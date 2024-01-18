@@ -56,8 +56,8 @@ export class Collection {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "imdb",
-                "X-Fern-SDK-Version": "0.0.577",
+                "X-Fern-SDK-Name": "sdk",
+                "X-Fern-SDK-Version": "0.0.579",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,

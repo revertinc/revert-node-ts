@@ -1,6 +1,6 @@
 {
-    "name": "imdb",
-    "version": "0.0.577",
+    "name": "sdk",
+    "version": "0.0.579",
     "private": false,
     "repository": "https://github.com/revertinc/revert-node-ts",
     "main": "./index.js",
