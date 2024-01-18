@@ -3,22 +3,20 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const TaskWrite: core.serialization.ObjectSchema<
-    serializers.common.TaskWrite.Raw,
-    RevertRevertApi.common.TaskWrite
-> = core.serialization.object({
-    subject: core.serialization.string(),
-    body: core.serialization.string(),
-    priority: core.serialization.string(),
-    status: core.serialization.string(),
-    dueDate: core.serialization.unknown(),
-    associations: core.serialization
-        .lazyObject(async () => (await import("../../../../..")).common.TaskAssociation)
-        .optional(),
-});
+export const TaskWrite: core.serialization.ObjectSchema<serializers.common.TaskWrite.Raw, Vellum.common.TaskWrite> =
+    core.serialization.object({
+        subject: core.serialization.string(),
+        body: core.serialization.string(),
+        priority: core.serialization.string(),
+        status: core.serialization.string(),
+        dueDate: core.serialization.unknown(),
+        associations: core.serialization
+            .lazyObject(async () => (await import("../../../../..")).common.TaskAssociation)
+            .optional(),
+    });
 
 export declare namespace TaskWrite {
     interface Raw {

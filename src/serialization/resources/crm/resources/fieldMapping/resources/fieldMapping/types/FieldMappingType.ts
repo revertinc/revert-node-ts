@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../../../..";
-import * as RevertRevertApi from "../../../../../../../../api";
+import * as Vellum from "../../../../../../../../api";
 import * as core from "../../../../../../../../core";
 
 export const FieldMappingType: core.serialization.ObjectSchema<
     serializers.crm.fieldMapping.FieldMappingType.Raw,
-    RevertRevertApi.crm.fieldMapping.FieldMappingType
+    Vellum.crm.fieldMapping.FieldMappingType
 > = core.serialization.object({
     sourceFieldName: core.serialization.string(),
     targetFieldName: core.serialization.string(),

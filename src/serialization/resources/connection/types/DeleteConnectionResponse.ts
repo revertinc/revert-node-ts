@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../..";
-import * as RevertRevertApi from "../../../../api";
+import * as Vellum from "../../../../api";
 import * as core from "../../../../core";
 
 export const DeleteConnectionResponse: core.serialization.ObjectSchema<
     serializers.DeleteConnectionResponse.Raw,
-    RevertRevertApi.DeleteConnectionResponse
+    Vellum.DeleteConnectionResponse
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../..")).common.ResponseStatus),
     deleted: core.serialization.lazyObject(async () => (await import("../../..")).common.Connection),

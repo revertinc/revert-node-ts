@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Account: core.serialization.ObjectSchema<serializers.common.Account.Raw, RevertRevertApi.common.Account> =
+export const Account: core.serialization.ObjectSchema<serializers.common.Account.Raw, Vellum.common.Account> =
     core.serialization.object({
         id: core.serialization.string(),
         tenantCount: core.serialization.property("tenant_count", core.serialization.number()),

@@ -4,14 +4,14 @@
 
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
-import * as RevertRevertApi from "../../..";
+import * as Vellum from "../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
 import * as errors from "../../../../errors";
 
 export declare namespace Metadata {
     interface Options {
-        environment?: core.Supplier<environments.RevertRevertApiEnvironment | string>;
+        environment?: core.Supplier<environments.VellumEnvironment | string>;
     }
 
     interface RequestOptions {
@@ -25,29 +25,28 @@ export class Metadata {
 
     /**
      * Retrieve a list of CRMs available for this account from the database based on the public token.
-     * @throws {@link RevertRevertApi.common.UnAuthorizedError}
-     * @throws {@link RevertRevertApi.common.InternalServerError}
+     * @throws {@link Vellum.common.UnAuthorizedError}
+     * @throws {@link Vellum.common.InternalServerError}
      */
     public async getCrms(
-        request: RevertRevertApi.CrmMetadataRequest,
+        request: Vellum.CrmMetadataRequest,
         requestOptions?: Metadata.RequestOptions
-    ): Promise<RevertRevertApi.CrmMetadataResponse> {
+    ): Promise<Vellum.CrmMetadataResponse> {
         const { xRevertPublicToken } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ??
-                    environments.RevertRevertApiEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
                 "metadata/crms"
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.587",
+                "X-Fern-SDK-Version": "0.0.589",
                 "x-revert-public-token": xRevertPublicToken,
             },
             contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
             maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
@@ -62,7 +61,7 @@ export class Metadata {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new RevertRevertApi.common.UnAuthorizedError(
+                    throw new Vellum.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -71,7 +70,7 @@ export class Metadata {
                         })
                     );
                 case 500:
-                    throw new RevertRevertApi.common.InternalServerError(
+                    throw new Vellum.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -80,7 +79,7 @@ export class Metadata {
                         })
                     );
                 default:
-                    throw new errors.RevertRevertApiError({
+                    throw new errors.VellumError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -89,14 +88,14 @@ export class Metadata {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.RevertRevertApiTimeoutError();
+                throw new errors.VellumTimeoutError();
             case "unknown":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     message: _response.error.errorMessage,
                 });
         }

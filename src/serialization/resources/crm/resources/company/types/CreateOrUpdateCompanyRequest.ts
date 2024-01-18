@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CreateOrUpdateCompanyRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateCompanyRequest.Raw,
-    RevertRevertApi.crm.CreateOrUpdateCompanyRequest
+    Vellum.crm.CreateOrUpdateCompanyRequest
 > = core.serialization
     .object({
         associations: core.serialization

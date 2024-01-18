@@ -3,14 +3,13 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Lead: core.serialization.ObjectSchema<serializers.common.Lead.Raw, RevertRevertApi.common.Lead> =
-    core.serialization
-        .object({})
-        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
-        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.LeadWrite));
+export const Lead: core.serialization.ObjectSchema<serializers.common.Lead.Raw, Vellum.common.Lead> = core.serialization
+    .object({})
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.LeadWrite));
 
 export declare namespace Lead {
     interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.LeadWrite.Raw {}

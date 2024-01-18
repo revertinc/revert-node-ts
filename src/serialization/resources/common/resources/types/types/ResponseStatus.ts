@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const ResponseStatus: core.serialization.Schema<
     serializers.common.ResponseStatus.Raw,
-    RevertRevertApi.common.ResponseStatus
+    Vellum.common.ResponseStatus
 > = core.serialization.enum_(["ok", "error"]);
 
 export declare namespace ResponseStatus {

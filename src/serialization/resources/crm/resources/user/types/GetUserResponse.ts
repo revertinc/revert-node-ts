@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const GetUserResponse: core.serialization.ObjectSchema<
     serializers.crm.GetUserResponse.Raw,
-    RevertRevertApi.crm.GetUserResponse
+    Vellum.crm.GetUserResponse
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../../../..")).common.ResponseStatus),
     result: core.serialization.lazyObject(async () => (await import("../../../../..")).common.User),

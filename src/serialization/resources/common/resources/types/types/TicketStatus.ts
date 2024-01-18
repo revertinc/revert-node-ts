@@ -3,13 +3,11 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const TicketStatus: core.serialization.Schema<
-    serializers.common.TicketStatus.Raw,
-    RevertRevertApi.common.TicketStatus
-> = core.serialization.enum_(["open", "close", "in_progress"]);
+export const TicketStatus: core.serialization.Schema<serializers.common.TicketStatus.Raw, Vellum.common.TicketStatus> =
+    core.serialization.enum_(["open", "close", "in_progress"]);
 
 export declare namespace TicketStatus {
     type Raw = "open" | "close" | "in_progress";

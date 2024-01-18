@@ -3,24 +3,22 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const EventWrite: core.serialization.ObjectSchema<
-    serializers.common.EventWrite.Raw,
-    RevertRevertApi.common.EventWrite
-> = core.serialization.object({
-    type: core.serialization.string(),
-    subject: core.serialization.string(),
-    startDateTime: core.serialization.string(),
-    endDateTime: core.serialization.string(),
-    isAllDayEvent: core.serialization.boolean(),
-    description: core.serialization.string(),
-    location: core.serialization.string(),
-    associations: core.serialization
-        .lazyObject(async () => (await import("../../../../..")).common.EventAssociation)
-        .optional(),
-});
+export const EventWrite: core.serialization.ObjectSchema<serializers.common.EventWrite.Raw, Vellum.common.EventWrite> =
+    core.serialization.object({
+        type: core.serialization.string(),
+        subject: core.serialization.string(),
+        startDateTime: core.serialization.string(),
+        endDateTime: core.serialization.string(),
+        isAllDayEvent: core.serialization.boolean(),
+        description: core.serialization.string(),
+        location: core.serialization.string(),
+        associations: core.serialization
+            .lazyObject(async () => (await import("../../../../..")).common.EventAssociation)
+            .optional(),
+    });
 
 export declare namespace EventWrite {
     interface Raw {

@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../../../..";
-import * as RevertRevertApi from "../../../../../../../../api";
+import * as Vellum from "../../../../../../../../api";
 import * as core from "../../../../../../../../core";
 
 export const GetFieldMappingResponse: core.serialization.ObjectSchema<
     serializers.crm.fieldMapping.GetFieldMappingResponse.Raw,
-    RevertRevertApi.crm.fieldMapping.GetFieldMappingResponse
+    Vellum.crm.fieldMapping.GetFieldMappingResponse
 > = core.serialization.object({
     canAddCustomMapping: core.serialization.boolean(),
     mappableFields: core.serialization.list(

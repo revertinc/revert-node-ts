@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Company: core.serialization.ObjectSchema<serializers.common.Company.Raw, RevertRevertApi.common.Company> =
+export const Company: core.serialization.ObjectSchema<serializers.common.Company.Raw, Vellum.common.Company> =
     core.serialization
         .object({
             name: core.serialization.string(),

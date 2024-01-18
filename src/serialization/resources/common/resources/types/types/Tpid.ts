@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Tpid: core.serialization.Schema<serializers.common.Tpid.Raw, RevertRevertApi.common.Tpid> =
+export const Tpid: core.serialization.Schema<serializers.common.Tpid.Raw, Vellum.common.Tpid> =
     core.serialization.enum_(["hubspot", "zohocrm", "sfdc", "pipedrive", "slack"]);
 
 export declare namespace Tpid {

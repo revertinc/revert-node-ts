@@ -3,21 +3,19 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const LeadWrite: core.serialization.ObjectSchema<
-    serializers.common.LeadWrite.Raw,
-    RevertRevertApi.common.LeadWrite
-> = core.serialization.object({
-    firstName: core.serialization.string(),
-    lastName: core.serialization.string(),
-    phone: core.serialization.string(),
-    email: core.serialization.string(),
-    associations: core.serialization
-        .lazyObject(async () => (await import("../../../../..")).common.LeadAssociation)
-        .optional(),
-});
+export const LeadWrite: core.serialization.ObjectSchema<serializers.common.LeadWrite.Raw, Vellum.common.LeadWrite> =
+    core.serialization.object({
+        firstName: core.serialization.string(),
+        lastName: core.serialization.string(),
+        phone: core.serialization.string(),
+        email: core.serialization.string(),
+        associations: core.serialization
+            .lazyObject(async () => (await import("../../../../..")).common.LeadAssociation)
+            .optional(),
+    });
 
 export declare namespace LeadWrite {
     interface Raw {

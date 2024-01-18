@@ -18,7 +18,7 @@ import { User } from "../resources/user/client/Client";
 
 export declare namespace Crm {
     interface Options {
-        environment?: core.Supplier<environments.RevertRevertApiEnvironment | string>;
+        environment?: core.Supplier<environments.VellumEnvironment | string>;
     }
 
     interface RequestOptions {

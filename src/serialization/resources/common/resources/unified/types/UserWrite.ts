@@ -3,18 +3,16 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const UserWrite: core.serialization.ObjectSchema<
-    serializers.common.UserWrite.Raw,
-    RevertRevertApi.common.UserWrite
-> = core.serialization.object({
-    firstName: core.serialization.string(),
-    lastName: core.serialization.string(),
-    phone: core.serialization.string(),
-    email: core.serialization.string(),
-});
+export const UserWrite: core.serialization.ObjectSchema<serializers.common.UserWrite.Raw, Vellum.common.UserWrite> =
+    core.serialization.object({
+        firstName: core.serialization.string(),
+        lastName: core.serialization.string(),
+        phone: core.serialization.string(),
+        email: core.serialization.string(),
+    });
 
 export declare namespace UserWrite {
     interface Raw {

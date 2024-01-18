@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../..";
-import * as RevertRevertApi from "../../../../api";
+import * as Vellum from "../../../../api";
 import * as core from "../../../../core";
 
 export const CreateConnectionWebhookRequest: core.serialization.ObjectSchema<
     serializers.CreateConnectionWebhookRequest.Raw,
-    RevertRevertApi.CreateConnectionWebhookRequest
+    Vellum.CreateConnectionWebhookRequest
 > = core.serialization.object({
     webhookUrl: core.serialization.string(),
 });

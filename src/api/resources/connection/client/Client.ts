@@ -4,14 +4,14 @@
 
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
-import * as RevertRevertApi from "../../..";
+import * as Vellum from "../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
 import * as errors from "../../../../errors";
 
 export declare namespace Connection {
     interface Options {
-        environment?: core.Supplier<environments.RevertRevertApiEnvironment | string>;
+        environment?: core.Supplier<environments.VellumEnvironment | string>;
     }
 
     interface RequestOptions {
@@ -25,32 +25,31 @@ export class Connection {
 
     /**
      * Get details of a connection for a specific tenant.
-     * @throws {@link RevertRevertApi.common.UnAuthorizedError}
-     * @throws {@link RevertRevertApi.common.InternalServerError}
-     * @throws {@link RevertRevertApi.common.NotFoundError}
+     * @throws {@link Vellum.common.UnAuthorizedError}
+     * @throws {@link Vellum.common.InternalServerError}
+     * @throws {@link Vellum.common.NotFoundError}
      */
     public async getConnection(
-        request: RevertRevertApi.GetConnectionRequest,
+        request: Vellum.GetConnectionRequest,
         requestOptions?: Connection.RequestOptions
-    ): Promise<RevertRevertApi.GetConnectionResponse> {
+    ): Promise<Vellum.GetConnectionResponse> {
         const { xRevertApiToken, xApiVersion, xRevertTId } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ??
-                    environments.RevertRevertApiEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
                 "connection"
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.587",
+                "X-Fern-SDK-Version": "0.0.589",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
             },
             contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
             maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
@@ -65,7 +64,7 @@ export class Connection {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new RevertRevertApi.common.UnAuthorizedError(
+                    throw new Vellum.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -74,7 +73,7 @@ export class Connection {
                         })
                     );
                 case 500:
-                    throw new RevertRevertApi.common.InternalServerError(
+                    throw new Vellum.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -83,7 +82,7 @@ export class Connection {
                         })
                     );
                 case 404:
-                    throw new RevertRevertApi.common.NotFoundError(
+                    throw new Vellum.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -92,7 +91,7 @@ export class Connection {
                         })
                     );
                 default:
-                    throw new errors.RevertRevertApiError({
+                    throw new errors.VellumError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -101,14 +100,14 @@ export class Connection {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.RevertRevertApiTimeoutError();
+                throw new errors.VellumTimeoutError();
             case "unknown":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -116,32 +115,31 @@ export class Connection {
 
     /**
      * Delete a connection for a specific tenant.
-     * @throws {@link RevertRevertApi.common.UnAuthorizedError}
-     * @throws {@link RevertRevertApi.common.InternalServerError}
-     * @throws {@link RevertRevertApi.common.NotFoundError}
+     * @throws {@link Vellum.common.UnAuthorizedError}
+     * @throws {@link Vellum.common.InternalServerError}
+     * @throws {@link Vellum.common.NotFoundError}
      */
     public async deleteConnection(
-        request: RevertRevertApi.DeleteConnectionRequest,
+        request: Vellum.DeleteConnectionRequest,
         requestOptions?: Connection.RequestOptions
-    ): Promise<RevertRevertApi.DeleteConnectionResponse> {
+    ): Promise<Vellum.DeleteConnectionResponse> {
         const { xRevertApiToken, xApiVersion, xRevertTId } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ??
-                    environments.RevertRevertApiEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
                 "connection"
             ),
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.587",
+                "X-Fern-SDK-Version": "0.0.589",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
             },
             contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
             maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
@@ -156,7 +154,7 @@ export class Connection {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new RevertRevertApi.common.UnAuthorizedError(
+                    throw new Vellum.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -165,7 +163,7 @@ export class Connection {
                         })
                     );
                 case 500:
-                    throw new RevertRevertApi.common.InternalServerError(
+                    throw new Vellum.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -174,7 +172,7 @@ export class Connection {
                         })
                     );
                 case 404:
-                    throw new RevertRevertApi.common.NotFoundError(
+                    throw new Vellum.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -183,7 +181,7 @@ export class Connection {
                         })
                     );
                 default:
-                    throw new errors.RevertRevertApiError({
+                    throw new errors.VellumError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -192,14 +190,14 @@ export class Connection {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.RevertRevertApiTimeoutError();
+                throw new errors.VellumTimeoutError();
             case "unknown":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -207,31 +205,30 @@ export class Connection {
 
     /**
      * Get details of all the connection for a specific account at Revert.
-     * @throws {@link RevertRevertApi.common.UnAuthorizedError}
-     * @throws {@link RevertRevertApi.common.InternalServerError}
-     * @throws {@link RevertRevertApi.common.NotFoundError}
+     * @throws {@link Vellum.common.UnAuthorizedError}
+     * @throws {@link Vellum.common.InternalServerError}
+     * @throws {@link Vellum.common.NotFoundError}
      */
     public async getAllConnections(
-        request: RevertRevertApi.GetAllConnectionRequest,
+        request: Vellum.GetAllConnectionRequest,
         requestOptions?: Connection.RequestOptions
-    ): Promise<RevertRevertApi.GetAllConnectionResponse> {
+    ): Promise<Vellum.GetAllConnectionResponse> {
         const { xRevertApiToken, xApiVersion } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ??
-                    environments.RevertRevertApiEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
                 "connection/all"
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.587",
+                "X-Fern-SDK-Version": "0.0.589",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
             },
             contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
             maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
@@ -246,7 +243,7 @@ export class Connection {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new RevertRevertApi.common.UnAuthorizedError(
+                    throw new Vellum.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -255,7 +252,7 @@ export class Connection {
                         })
                     );
                 case 500:
-                    throw new RevertRevertApi.common.InternalServerError(
+                    throw new Vellum.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -264,7 +261,7 @@ export class Connection {
                         })
                     );
                 case 404:
-                    throw new RevertRevertApi.common.NotFoundError(
+                    throw new Vellum.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -273,7 +270,7 @@ export class Connection {
                         })
                     );
                 default:
-                    throw new errors.RevertRevertApiError({
+                    throw new errors.VellumError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -282,14 +279,14 @@ export class Connection {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.RevertRevertApiTimeoutError();
+                throw new errors.VellumTimeoutError();
             case "unknown":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -297,26 +294,25 @@ export class Connection {
 
     /**
      * Create a webhook endpoint that listens to a connection events of a specific tenant.
-     * @throws {@link RevertRevertApi.common.UnAuthorizedError}
-     * @throws {@link RevertRevertApi.common.InternalServerError}
-     * @throws {@link RevertRevertApi.common.NotFoundError}
+     * @throws {@link Vellum.common.UnAuthorizedError}
+     * @throws {@link Vellum.common.InternalServerError}
+     * @throws {@link Vellum.common.NotFoundError}
      */
     public async createWebhook(
-        request: RevertRevertApi.CreateWebhookRequest,
+        request: Vellum.CreateWebhookRequest,
         requestOptions?: Connection.RequestOptions
-    ): Promise<RevertRevertApi.CreateConnectionWebhookResponse> {
+    ): Promise<Vellum.CreateConnectionWebhookResponse> {
         const { xRevertApiToken, xApiVersion, xRevertTId, body: _body } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ??
-                    environments.RevertRevertApiEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
                 "connection/webhook"
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.587",
+                "X-Fern-SDK-Version": "0.0.589",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -325,7 +321,7 @@ export class Connection {
             body: await serializers.CreateConnectionWebhookRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
             maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
@@ -340,7 +336,7 @@ export class Connection {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new RevertRevertApi.common.UnAuthorizedError(
+                    throw new Vellum.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -349,7 +345,7 @@ export class Connection {
                         })
                     );
                 case 500:
-                    throw new RevertRevertApi.common.InternalServerError(
+                    throw new Vellum.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -358,7 +354,7 @@ export class Connection {
                         })
                     );
                 case 404:
-                    throw new RevertRevertApi.common.NotFoundError(
+                    throw new Vellum.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -367,7 +363,7 @@ export class Connection {
                         })
                     );
                 default:
-                    throw new errors.RevertRevertApiError({
+                    throw new errors.VellumError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -376,14 +372,14 @@ export class Connection {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.RevertRevertApiTimeoutError();
+                throw new errors.VellumTimeoutError();
             case "unknown":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -391,32 +387,31 @@ export class Connection {
 
     /**
      * Get details of a connection webhook for a specific tenant.
-     * @throws {@link RevertRevertApi.common.UnAuthorizedError}
-     * @throws {@link RevertRevertApi.common.InternalServerError}
-     * @throws {@link RevertRevertApi.common.NotFoundError}
+     * @throws {@link Vellum.common.UnAuthorizedError}
+     * @throws {@link Vellum.common.InternalServerError}
+     * @throws {@link Vellum.common.NotFoundError}
      */
     public async getWebhook(
-        request: RevertRevertApi.GetConnectionWebhookRequest,
+        request: Vellum.GetConnectionWebhookRequest,
         requestOptions?: Connection.RequestOptions
-    ): Promise<RevertRevertApi.GetConnectionWebhookResponse> {
+    ): Promise<Vellum.GetConnectionWebhookResponse> {
         const { xRevertApiToken, xApiVersion, xRevertTId } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ??
-                    environments.RevertRevertApiEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
                 "connection/webhook"
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.587",
+                "X-Fern-SDK-Version": "0.0.589",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
             },
             contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
             maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
@@ -431,7 +426,7 @@ export class Connection {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new RevertRevertApi.common.UnAuthorizedError(
+                    throw new Vellum.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -440,7 +435,7 @@ export class Connection {
                         })
                     );
                 case 500:
-                    throw new RevertRevertApi.common.InternalServerError(
+                    throw new Vellum.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -449,7 +444,7 @@ export class Connection {
                         })
                     );
                 case 404:
-                    throw new RevertRevertApi.common.NotFoundError(
+                    throw new Vellum.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -458,7 +453,7 @@ export class Connection {
                         })
                     );
                 default:
-                    throw new errors.RevertRevertApiError({
+                    throw new errors.VellumError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -467,14 +462,14 @@ export class Connection {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.RevertRevertApiTimeoutError();
+                throw new errors.VellumTimeoutError();
             case "unknown":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -482,32 +477,31 @@ export class Connection {
 
     /**
      * Delete the connection webhook for a specific tenant.
-     * @throws {@link RevertRevertApi.common.UnAuthorizedError}
-     * @throws {@link RevertRevertApi.common.InternalServerError}
-     * @throws {@link RevertRevertApi.common.NotFoundError}
+     * @throws {@link Vellum.common.UnAuthorizedError}
+     * @throws {@link Vellum.common.InternalServerError}
+     * @throws {@link Vellum.common.NotFoundError}
      */
     public async deleteWebhook(
-        request: RevertRevertApi.DeleteConnectionWebhookRequest,
+        request: Vellum.DeleteConnectionWebhookRequest,
         requestOptions?: Connection.RequestOptions
-    ): Promise<RevertRevertApi.DeleteConnectionWebhookResponse> {
+    ): Promise<Vellum.DeleteConnectionWebhookResponse> {
         const { xRevertApiToken, xApiVersion, xRevertTId } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ??
-                    environments.RevertRevertApiEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
                 "connection/webhook"
             ),
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.587",
+                "X-Fern-SDK-Version": "0.0.589",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
             },
             contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
             maxRetries: requestOptions?.maxRetries,
         });
         if (_response.ok) {
@@ -522,7 +516,7 @@ export class Connection {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new RevertRevertApi.common.UnAuthorizedError(
+                    throw new Vellum.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -531,7 +525,7 @@ export class Connection {
                         })
                     );
                 case 500:
-                    throw new RevertRevertApi.common.InternalServerError(
+                    throw new Vellum.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -540,7 +534,7 @@ export class Connection {
                         })
                     );
                 case 404:
-                    throw new RevertRevertApi.common.NotFoundError(
+                    throw new Vellum.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -549,7 +543,7 @@ export class Connection {
                         })
                     );
                 default:
-                    throw new errors.RevertRevertApiError({
+                    throw new errors.VellumError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -558,14 +552,14 @@ export class Connection {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.RevertRevertApiTimeoutError();
+                throw new errors.VellumTimeoutError();
             case "unknown":
-                throw new errors.RevertRevertApiError({
+                throw new errors.VellumError({
                     message: _response.error.errorMessage,
                 });
         }

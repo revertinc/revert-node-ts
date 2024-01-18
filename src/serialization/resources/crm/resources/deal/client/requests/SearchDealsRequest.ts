@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../../..";
-import * as RevertRevertApi from "../../../../../../../api";
+import * as Vellum from "../../../../../../../api";
 import * as core from "../../../../../../../core";
 
 export const SearchDealsRequest: core.serialization.Schema<
     serializers.crm.SearchDealsRequest.Raw,
-    Omit<RevertRevertApi.crm.SearchDealsRequest, "fields" | "xRevertApiToken" | "xRevertTId" | "xApiVersion">
+    Omit<Vellum.crm.SearchDealsRequest, "fields" | "xRevertApiToken" | "xRevertTId" | "xApiVersion">
 > = core.serialization.object({
     searchCriteria: core.serialization.unknown(),
 });

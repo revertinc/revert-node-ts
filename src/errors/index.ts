@@ -1,2 +1,2 @@
-export { RevertRevertApiError } from "./RevertRevertApiError";
-export { RevertRevertApiTimeoutError } from "./RevertRevertApiTimeoutError";
+export { VellumError } from "./VellumError";
+export { VellumTimeoutError } from "./VellumTimeoutError";

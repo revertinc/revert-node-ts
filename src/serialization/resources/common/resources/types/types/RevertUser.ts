@@ -3,19 +3,17 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const RevertUser: core.serialization.ObjectSchema<
-    serializers.common.RevertUser.Raw,
-    RevertRevertApi.common.RevertUser
-> = core.serialization.object({
-    id: core.serialization.string(),
-    domain: core.serialization.string(),
-    email: core.serialization.string(),
-    accountId: core.serialization.string(),
-    account: core.serialization.lazyObject(async () => (await import("../../../../..")).common.Account).optional(),
-});
+export const RevertUser: core.serialization.ObjectSchema<serializers.common.RevertUser.Raw, Vellum.common.RevertUser> =
+    core.serialization.object({
+        id: core.serialization.string(),
+        domain: core.serialization.string(),
+        email: core.serialization.string(),
+        accountId: core.serialization.string(),
+        account: core.serialization.lazyObject(async () => (await import("../../../../..")).common.Account).optional(),
+    });
 
 export declare namespace RevertUser {
     interface Raw {

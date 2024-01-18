@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CreateOrUpdateTaskRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateTaskRequest.Raw,
-    RevertRevertApi.crm.CreateOrUpdateTaskRequest
+    Vellum.crm.CreateOrUpdateTaskRequest
 > = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.TaskWrite));

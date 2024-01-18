@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../..";
-import * as RevertRevertApi from "../../../../api";
+import * as Vellum from "../../../../api";
 import * as core from "../../../../core";
 
-export const CrmStatus: core.serialization.Schema<serializers.CrmStatus.Raw, RevertRevertApi.CrmStatus> =
+export const CrmStatus: core.serialization.Schema<serializers.CrmStatus.Raw, Vellum.CrmStatus> =
     core.serialization.enum_(["active", "inactive"]);
 
 export declare namespace CrmStatus {

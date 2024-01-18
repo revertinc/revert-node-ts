@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Event: core.serialization.ObjectSchema<serializers.common.Event.Raw, RevertRevertApi.common.Event> =
+export const Event: core.serialization.ObjectSchema<serializers.common.Event.Raw, Vellum.common.Event> =
     core.serialization
         .object({})
         .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))

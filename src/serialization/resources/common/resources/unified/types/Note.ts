@@ -3,14 +3,13 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Note: core.serialization.ObjectSchema<serializers.common.Note.Raw, RevertRevertApi.common.Note> =
-    core.serialization
-        .object({})
-        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
-        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.NoteWrite));
+export const Note: core.serialization.ObjectSchema<serializers.common.Note.Raw, Vellum.common.Note> = core.serialization
+    .object({})
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.NoteWrite));
 
 export declare namespace Note {
     interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.NoteWrite.Raw {}

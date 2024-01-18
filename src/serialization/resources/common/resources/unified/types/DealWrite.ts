@@ -3,24 +3,22 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const DealWrite: core.serialization.ObjectSchema<
-    serializers.common.DealWrite.Raw,
-    RevertRevertApi.common.DealWrite
-> = core.serialization.object({
-    amount: core.serialization.number(),
-    priority: core.serialization.string().optional(),
-    stage: core.serialization.string(),
-    name: core.serialization.string(),
-    expectedCloseDate: core.serialization.unknown(),
-    isWon: core.serialization.boolean(),
-    probability: core.serialization.number(),
-    associations: core.serialization
-        .lazyObject(async () => (await import("../../../../..")).common.DealAssociation)
-        .optional(),
-});
+export const DealWrite: core.serialization.ObjectSchema<serializers.common.DealWrite.Raw, Vellum.common.DealWrite> =
+    core.serialization.object({
+        amount: core.serialization.number(),
+        priority: core.serialization.string().optional(),
+        stage: core.serialization.string(),
+        name: core.serialization.string(),
+        expectedCloseDate: core.serialization.unknown(),
+        isWon: core.serialization.boolean(),
+        probability: core.serialization.number(),
+        associations: core.serialization
+            .lazyObject(async () => (await import("../../../../..")).common.DealAssociation)
+            .optional(),
+    });
 
 export declare namespace DealWrite {
     interface Raw {

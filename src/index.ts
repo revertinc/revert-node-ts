@@ -1,4 +1,4 @@
-export * as RevertRevertApi from "./api";
-export { RevertRevertApiClient } from "./Client";
-export { RevertRevertApiEnvironment } from "./environments";
-export { RevertRevertApiError, RevertRevertApiTimeoutError } from "./errors";
+export * as Vellum from "./api";
+export { VellumClient } from "./Client";
+export { VellumEnvironment } from "./environments";
+export { VellumError, VellumTimeoutError } from "./errors";

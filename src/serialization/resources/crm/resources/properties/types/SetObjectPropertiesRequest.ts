@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const SetObjectPropertiesRequest: core.serialization.ObjectSchema<
     serializers.crm.SetObjectPropertiesRequest.Raw,
-    RevertRevertApi.crm.SetObjectPropertiesRequest
+    Vellum.crm.SetObjectPropertiesRequest
 > = core.serialization.lazyObject(async () => (await import("../../../../..")).crm.FieldDetailsTypeRequest);
 
 export declare namespace SetObjectPropertiesRequest {

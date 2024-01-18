@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const TicketPriority: core.serialization.Schema<
     serializers.common.TicketPriority.Raw,
-    RevertRevertApi.common.TicketPriority
+    Vellum.common.TicketPriority
 > = core.serialization.enum_(["urgent", "high", "medium", "low", "lowest"]);
 
 export declare namespace TicketPriority {

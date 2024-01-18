@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CreateOrUpdateContactRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateContactRequest.Raw,
-    RevertRevertApi.crm.CreateOrUpdateContactRequest
+    Vellum.crm.CreateOrUpdateContactRequest
 > = core.serialization.lazyObject(async () => (await import("../../../../..")).common.ContactWrite);
 
 export declare namespace CreateOrUpdateContactRequest {

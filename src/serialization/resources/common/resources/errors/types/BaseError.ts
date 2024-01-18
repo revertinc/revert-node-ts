@@ -3,15 +3,13 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const BaseError: core.serialization.ObjectSchema<
-    serializers.common.BaseError.Raw,
-    RevertRevertApi.common.BaseError
-> = core.serialization.object({
-    error: core.serialization.string(),
-});
+export const BaseError: core.serialization.ObjectSchema<serializers.common.BaseError.Raw, Vellum.common.BaseError> =
+    core.serialization.object({
+        error: core.serialization.string(),
+    });
 
 export declare namespace BaseError {
     interface Raw {

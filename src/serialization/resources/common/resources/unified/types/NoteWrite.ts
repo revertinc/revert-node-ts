@@ -3,18 +3,16 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const NoteWrite: core.serialization.ObjectSchema<
-    serializers.common.NoteWrite.Raw,
-    RevertRevertApi.common.NoteWrite
-> = core.serialization.object({
-    content: core.serialization.string(),
-    associations: core.serialization
-        .lazyObject(async () => (await import("../../../../..")).common.DealAssociation)
-        .optional(),
-});
+export const NoteWrite: core.serialization.ObjectSchema<serializers.common.NoteWrite.Raw, Vellum.common.NoteWrite> =
+    core.serialization.object({
+        content: core.serialization.string(),
+        associations: core.serialization
+            .lazyObject(async () => (await import("../../../../..")).common.DealAssociation)
+            .optional(),
+    });
 
 export declare namespace NoteWrite {
     interface Raw {

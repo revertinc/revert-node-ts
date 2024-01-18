@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CreateOrUpdateCommentRequest: core.serialization.ObjectSchema<
     serializers.ticket.CreateOrUpdateCommentRequest.Raw,
-    RevertRevertApi.ticket.CreateOrUpdateCommentRequest
+    Vellum.ticket.CreateOrUpdateCommentRequest
 > = core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommentTicketWrite);
 
 export declare namespace CreateOrUpdateCommentRequest {

@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../../../..";
-import * as RevertRevertApi from "../../../../../../../../api";
+import * as Vellum from "../../../../../../../../api";
 import * as core from "../../../../../../../../core";
 
 export const CreateFieldMappingResponse: core.serialization.ObjectSchema<
     serializers.crm.fieldMapping.CreateFieldMappingResponse.Raw,
-    RevertRevertApi.crm.fieldMapping.CreateFieldMappingResponse
+    Vellum.crm.fieldMapping.CreateFieldMappingResponse
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../../../../../..")).common.ResponseStatus),
 });

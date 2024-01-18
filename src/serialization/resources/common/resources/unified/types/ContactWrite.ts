@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const ContactWrite: core.serialization.ObjectSchema<
     serializers.common.ContactWrite.Raw,
-    RevertRevertApi.common.ContactWrite
+    Vellum.common.ContactWrite
 > = core.serialization.object({
     firstName: core.serialization.string(),
     lastName: core.serialization.string(),

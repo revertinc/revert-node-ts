@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../..";
-import * as RevertRevertApi from "../../../../api";
+import * as Vellum from "../../../../api";
 import * as core from "../../../../core";
 
 export const GetConnectionResponse: core.serialization.ObjectSchema<
     serializers.GetConnectionResponse.Raw,
-    RevertRevertApi.GetConnectionResponse
+    Vellum.GetConnectionResponse
 > = core.serialization
     .object({
         error: core.serialization.string().optional(),

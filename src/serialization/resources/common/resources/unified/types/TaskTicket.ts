@@ -3,16 +3,14 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const TaskTicket: core.serialization.ObjectSchema<
-    serializers.common.TaskTicket.Raw,
-    RevertRevertApi.common.TaskTicket
-> = core.serialization
-    .object({})
-    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
-    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.TaskTicketWrite));
+export const TaskTicket: core.serialization.ObjectSchema<serializers.common.TaskTicket.Raw, Vellum.common.TaskTicket> =
+    core.serialization
+        .object({})
+        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
+        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.TaskTicketWrite));
 
 export declare namespace TaskTicket {
     interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.TaskTicketWrite.Raw {}

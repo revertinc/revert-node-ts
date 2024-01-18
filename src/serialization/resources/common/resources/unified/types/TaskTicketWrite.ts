@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const TaskTicketWrite: core.serialization.ObjectSchema<
     serializers.common.TaskTicketWrite.Raw,
-    RevertRevertApi.common.TaskTicketWrite
+    Vellum.common.TaskTicketWrite
 > = core.serialization.object({
     name: core.serialization.string(),
     assignees: core.serialization.list(core.serialization.string()),

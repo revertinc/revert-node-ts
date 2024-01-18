@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const GetObjectPropertiesResponse: core.serialization.Schema<
     serializers.crm.GetObjectPropertiesResponse.Raw,
-    RevertRevertApi.crm.GetObjectPropertiesResponse
+    Vellum.crm.GetObjectPropertiesResponse
 > = core.serialization.unknown();
 
 export declare namespace GetObjectPropertiesResponse {

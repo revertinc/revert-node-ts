@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const FieldDetailsTypeRequest: core.serialization.ObjectSchema<
     serializers.crm.FieldDetailsTypeRequest.Raw,
-    RevertRevertApi.crm.FieldDetailsTypeRequest
+    Vellum.crm.FieldDetailsTypeRequest
 > = core.serialization
     .object({
         additional: core.serialization.unknown(),

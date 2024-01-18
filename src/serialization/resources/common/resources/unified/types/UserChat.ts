@@ -3,17 +3,15 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const UserChat: core.serialization.ObjectSchema<
-    serializers.common.UserChat.Raw,
-    RevertRevertApi.common.UserChat
-> = core.serialization.object({
-    id: core.serialization.string(),
-    name: core.serialization.string(),
-    createdTimestamp: core.serialization.unknown(),
-});
+export const UserChat: core.serialization.ObjectSchema<serializers.common.UserChat.Raw, Vellum.common.UserChat> =
+    core.serialization.object({
+        id: core.serialization.string(),
+        name: core.serialization.string(),
+        createdTimestamp: core.serialization.unknown(),
+    });
 
 export declare namespace UserChat {
     interface Raw {

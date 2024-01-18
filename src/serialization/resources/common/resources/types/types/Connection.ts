@@ -3,27 +3,25 @@
  */
 
 import * as serializers from "../../../../..";
-import * as RevertRevertApi from "../../../../../../api";
+import * as Vellum from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Connection: core.serialization.ObjectSchema<
-    serializers.common.Connection.Raw,
-    RevertRevertApi.common.Connection
-> = core.serialization.object({
-    tpId: core.serialization.property(
-        "tp_id",
-        core.serialization.lazy(async () => (await import("../../../../..")).common.Tpid)
-    ),
-    tpAccessToken: core.serialization.property("tp_access_token", core.serialization.string()),
-    tpRefreshToken: core.serialization.property("tp_refresh_token", core.serialization.string().optional()),
-    tpCustomerId: core.serialization.property("tp_customer_id", core.serialization.string()),
-    tId: core.serialization.property("t_id", core.serialization.string()),
-    tpAccountUrl: core.serialization.property("tp_account_url", core.serialization.string().optional()),
-    ownerAccountPublicToken: core.serialization.property("owner_account_public_token", core.serialization.string()),
-    appClientId: core.serialization.property("app_client_id", core.serialization.string().optional()),
-    appClientSecret: core.serialization.property("app_client_secret", core.serialization.string().optional()),
-    app: core.serialization.lazyObject(async () => (await import("../../../../..")).common.App).optional(),
-});
+export const Connection: core.serialization.ObjectSchema<serializers.common.Connection.Raw, Vellum.common.Connection> =
+    core.serialization.object({
+        tpId: core.serialization.property(
+            "tp_id",
+            core.serialization.lazy(async () => (await import("../../../../..")).common.Tpid)
+        ),
+        tpAccessToken: core.serialization.property("tp_access_token", core.serialization.string()),
+        tpRefreshToken: core.serialization.property("tp_refresh_token", core.serialization.string().optional()),
+        tpCustomerId: core.serialization.property("tp_customer_id", core.serialization.string()),
+        tId: core.serialization.property("t_id", core.serialization.string()),
+        tpAccountUrl: core.serialization.property("tp_account_url", core.serialization.string().optional()),
+        ownerAccountPublicToken: core.serialization.property("owner_account_public_token", core.serialization.string()),
+        appClientId: core.serialization.property("app_client_id", core.serialization.string().optional()),
+        appClientSecret: core.serialization.property("app_client_secret", core.serialization.string().optional()),
+        app: core.serialization.lazyObject(async () => (await import("../../../../..")).common.App).optional(),
+    });
 
 export declare namespace Connection {
     interface Raw {
