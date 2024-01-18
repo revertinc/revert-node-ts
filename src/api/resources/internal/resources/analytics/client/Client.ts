@@ -42,8 +42,8 @@ export class Analytics {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk",
-                "X-Fern-SDK-Version": "0.0.579",
+                "X-Fern-SDK-Name": "@revertdotdev/node",
+                "X-Fern-SDK-Version": "0.0.581",
                 "x-revert-api-token": xRevertApiToken,
             },
             contentType: "application/json",
