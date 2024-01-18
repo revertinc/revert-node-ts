@@ -4,14 +4,14 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Vellum from "../../../../..";
+import * as Revert from "../../../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
 
 export declare namespace Note {
     interface Options {
-        environment?: core.Supplier<environments.VellumEnvironment | string>;
+        environment?: core.Supplier<environments.RevertEnvironment | string>;
     }
 
     interface RequestOptions {
@@ -25,15 +25,15 @@ export class Note {
 
     /**
      * Get details of a note
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async getNote(
         id: string,
-        request: Vellum.crm.GetNoteRequest,
+        request: Revert.crm.GetNoteRequest,
         requestOptions?: Note.RequestOptions
-    ): Promise<Vellum.crm.GetNoteResponse> {
+    ): Promise<Revert.crm.GetNoteResponse> {
         const { fields, xRevertApiToken, xRevertTId, xApiVersion } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
@@ -42,14 +42,14 @@ export class Note {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 `/crm/notes/${id}`
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -71,7 +71,7 @@ export class Note {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -80,7 +80,7 @@ export class Note {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -89,7 +89,7 @@ export class Note {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -98,7 +98,7 @@ export class Note {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -107,14 +107,14 @@ export class Note {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -122,14 +122,14 @@ export class Note {
 
     /**
      * Get all the notes
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async getNotes(
-        request: Vellum.crm.GetNotesRequest,
+        request: Revert.crm.GetNotesRequest,
         requestOptions?: Note.RequestOptions
-    ): Promise<Vellum.crm.GetNotesResponse> {
+    ): Promise<Revert.crm.GetNotesResponse> {
         const { fields, pageSize, cursor, xRevertApiToken, xRevertTId, xApiVersion } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
@@ -146,14 +146,14 @@ export class Note {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 "/crm/notes"
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -175,7 +175,7 @@ export class Note {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -184,7 +184,7 @@ export class Note {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -193,7 +193,7 @@ export class Note {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -202,7 +202,7 @@ export class Note {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -211,14 +211,14 @@ export class Note {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -226,25 +226,25 @@ export class Note {
 
     /**
      * Create a new note
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async createNote(
-        request: Vellum.crm.CreateNoteRequest,
+        request: Revert.crm.CreateNoteRequest,
         requestOptions?: Note.RequestOptions
-    ): Promise<Vellum.crm.CreateOrUpdateNoteResponse> {
+    ): Promise<Revert.crm.CreateOrUpdateNoteResponse> {
         const { xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 "/crm/notes"
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -268,7 +268,7 @@ export class Note {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -277,7 +277,7 @@ export class Note {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -286,7 +286,7 @@ export class Note {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -295,7 +295,7 @@ export class Note {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -304,14 +304,14 @@ export class Note {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -319,26 +319,26 @@ export class Note {
 
     /**
      * Update a note
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async updateNote(
         id: string,
-        request: Vellum.crm.UpdateNoteRequest,
+        request: Revert.crm.UpdateNoteRequest,
         requestOptions?: Note.RequestOptions
-    ): Promise<Vellum.crm.CreateOrUpdateNoteResponse> {
+    ): Promise<Revert.crm.CreateOrUpdateNoteResponse> {
         const { xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 `/crm/notes/${id}`
             ),
             method: "PATCH",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -362,7 +362,7 @@ export class Note {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -371,7 +371,7 @@ export class Note {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -380,7 +380,7 @@ export class Note {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -389,7 +389,7 @@ export class Note {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -398,14 +398,14 @@ export class Note {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -413,14 +413,14 @@ export class Note {
 
     /**
      * Search for notes
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async searchNotes(
-        request: Vellum.crm.SearchNotesRequest,
+        request: Revert.crm.SearchNotesRequest,
         requestOptions?: Note.RequestOptions
-    ): Promise<Vellum.crm.SearchNotesResponse> {
+    ): Promise<Revert.crm.SearchNotesResponse> {
         const { fields, xRevertApiToken, xRevertTId, xApiVersion, ..._body } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
@@ -429,14 +429,14 @@ export class Note {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 "/crm/notes/search"
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -459,7 +459,7 @@ export class Note {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -468,7 +468,7 @@ export class Note {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -477,7 +477,7 @@ export class Note {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -486,7 +486,7 @@ export class Note {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -495,14 +495,14 @@ export class Note {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }

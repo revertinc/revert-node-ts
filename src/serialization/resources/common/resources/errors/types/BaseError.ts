@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const BaseError: core.serialization.ObjectSchema<serializers.common.BaseError.Raw, Vellum.common.BaseError> =
+export const BaseError: core.serialization.ObjectSchema<serializers.common.BaseError.Raw, Revert.common.BaseError> =
     core.serialization.object({
         error: core.serialization.string(),
     });

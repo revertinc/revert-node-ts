@@ -4,14 +4,14 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Vellum from "../../../../..";
+import * as Revert from "../../../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../serialization";
 import * as errors from "../../../../../../errors";
 
 export declare namespace Task {
     interface Options {
-        environment?: core.Supplier<environments.VellumEnvironment | string>;
+        environment?: core.Supplier<environments.RevertEnvironment | string>;
     }
 
     interface RequestOptions {
@@ -25,15 +25,15 @@ export class Task {
 
     /**
      * Get details of a task
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async getTask(
         id: string,
-        request: Vellum.crm.GetTaskRequest,
+        request: Revert.crm.GetTaskRequest,
         requestOptions?: Task.RequestOptions
-    ): Promise<Vellum.crm.GetTaskResponse> {
+    ): Promise<Revert.crm.GetTaskResponse> {
         const { fields, xRevertApiToken, xRevertTId, xApiVersion } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
@@ -42,14 +42,14 @@ export class Task {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 `/crm/tasks/${id}`
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -71,7 +71,7 @@ export class Task {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -80,7 +80,7 @@ export class Task {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -89,7 +89,7 @@ export class Task {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -98,7 +98,7 @@ export class Task {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -107,14 +107,14 @@ export class Task {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -122,14 +122,14 @@ export class Task {
 
     /**
      * Get all the tasks
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async getTasks(
-        request: Vellum.crm.GetTasksRequest,
+        request: Revert.crm.GetTasksRequest,
         requestOptions?: Task.RequestOptions
-    ): Promise<Vellum.crm.GetTasksResponse> {
+    ): Promise<Revert.crm.GetTasksResponse> {
         const { fields, pageSize, cursor, xRevertApiToken, xRevertTId, xApiVersion } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
@@ -146,14 +146,14 @@ export class Task {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 "/crm/tasks"
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -175,7 +175,7 @@ export class Task {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -184,7 +184,7 @@ export class Task {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -193,7 +193,7 @@ export class Task {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -202,7 +202,7 @@ export class Task {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -211,14 +211,14 @@ export class Task {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -226,25 +226,25 @@ export class Task {
 
     /**
      * Create a new task
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async createTask(
-        request: Vellum.crm.CreateTaskRequest,
+        request: Revert.crm.CreateTaskRequest,
         requestOptions?: Task.RequestOptions
-    ): Promise<Vellum.crm.CreateOrUpdateTaskResponse> {
+    ): Promise<Revert.crm.CreateOrUpdateTaskResponse> {
         const { xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 "/crm/tasks"
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -268,7 +268,7 @@ export class Task {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -277,7 +277,7 @@ export class Task {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -286,7 +286,7 @@ export class Task {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -295,7 +295,7 @@ export class Task {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -304,14 +304,14 @@ export class Task {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -319,26 +319,26 @@ export class Task {
 
     /**
      * Update a task
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async updateTask(
         id: string,
-        request: Vellum.crm.UpdateTaskRequest,
+        request: Revert.crm.UpdateTaskRequest,
         requestOptions?: Task.RequestOptions
-    ): Promise<Vellum.crm.CreateOrUpdateTaskResponse> {
+    ): Promise<Revert.crm.CreateOrUpdateTaskResponse> {
         const { xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 `/crm/tasks/${id}`
             ),
             method: "PATCH",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -362,7 +362,7 @@ export class Task {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -371,7 +371,7 @@ export class Task {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -380,7 +380,7 @@ export class Task {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -389,7 +389,7 @@ export class Task {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -398,14 +398,14 @@ export class Task {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -413,14 +413,14 @@ export class Task {
 
     /**
      * Search for tasks
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async searchTasks(
-        request: Vellum.crm.SearchTasksRequest,
+        request: Revert.crm.SearchTasksRequest,
         requestOptions?: Task.RequestOptions
-    ): Promise<Vellum.crm.SearchTasksResponse> {
+    ): Promise<Revert.crm.SearchTasksResponse> {
         const { fields, xRevertApiToken, xRevertTId, xApiVersion, ..._body } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
@@ -429,14 +429,14 @@ export class Task {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 "/crm/tasks/search"
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -459,7 +459,7 @@ export class Task {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -468,7 +468,7 @@ export class Task {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -477,7 +477,7 @@ export class Task {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -486,7 +486,7 @@ export class Task {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -495,14 +495,14 @@ export class Task {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }

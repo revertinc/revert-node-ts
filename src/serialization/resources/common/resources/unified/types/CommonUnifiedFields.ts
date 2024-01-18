@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CommonUnifiedFields: core.serialization.ObjectSchema<
     serializers.common.CommonUnifiedFields.Raw,
-    Vellum.common.CommonUnifiedFields
+    Revert.common.CommonUnifiedFields
 > = core.serialization.object({
     id: core.serialization.string(),
     remoteId: core.serialization.string(),

@@ -1,2 +1,2 @@
-export { VellumError } from "./VellumError";
-export { VellumTimeoutError } from "./VellumTimeoutError";
+export { RevertError } from "./RevertError";
+export { RevertTimeoutError } from "./RevertTimeoutError";

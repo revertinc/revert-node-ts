@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Deal: core.serialization.ObjectSchema<serializers.common.Deal.Raw, Vellum.common.Deal> = core.serialization
+export const Deal: core.serialization.ObjectSchema<serializers.common.Deal.Raw, Revert.common.Deal> = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.DealWrite));

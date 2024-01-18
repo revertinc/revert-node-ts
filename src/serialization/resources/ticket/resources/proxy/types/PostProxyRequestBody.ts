@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const PostProxyRequestBody: core.serialization.ObjectSchema<
     serializers.ticket.PostProxyRequestBody.Raw,
-    Vellum.ticket.PostProxyRequestBody
+    Revert.ticket.PostProxyRequestBody
 > = core.serialization.object({
     path: core.serialization.string(),
     body: core.serialization.unknown().optional(),

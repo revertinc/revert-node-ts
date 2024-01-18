@@ -4,14 +4,14 @@
 
 import * as environments from "../../../../../../../../environments";
 import * as core from "../../../../../../../../core";
-import * as Vellum from "../../../../../../..";
+import * as Revert from "../../../../../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../../../../../serialization";
 import * as errors from "../../../../../../../../errors";
 
 export declare namespace FieldMapping {
     interface Options {
-        environment?: core.Supplier<environments.VellumEnvironment | string>;
+        environment?: core.Supplier<environments.RevertEnvironment | string>;
     }
 
     interface RequestOptions {
@@ -25,24 +25,24 @@ export class FieldMapping {
 
     /**
      * Get field mappings for a connection
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
      */
     public async getFieldMapping(
-        request: Vellum.crm.fieldMapping.GetFieldMappingRequest,
+        request: Revert.crm.fieldMapping.GetFieldMappingRequest,
         requestOptions?: FieldMapping.RequestOptions
-    ): Promise<Vellum.crm.fieldMapping.GetFieldMappingResponse> {
+    ): Promise<Revert.crm.fieldMapping.GetFieldMappingResponse> {
         const { xRevertApiToken, xRevertTId, xRevertTToken, xApiVersion } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 "/crm/field-mapping"
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
@@ -64,7 +64,7 @@ export class FieldMapping {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -73,7 +73,7 @@ export class FieldMapping {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -82,7 +82,7 @@ export class FieldMapping {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -91,14 +91,14 @@ export class FieldMapping {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -106,25 +106,25 @@ export class FieldMapping {
 
     /**
      * Create field mappings for a connection
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async createFieldMapping(
-        request: Vellum.crm.fieldMapping.CreateFieldMappingRequest,
+        request: Revert.crm.fieldMapping.CreateFieldMappingRequest,
         requestOptions?: FieldMapping.RequestOptions
-    ): Promise<Vellum.crm.fieldMapping.CreateFieldMappingResponse> {
+    ): Promise<Revert.crm.fieldMapping.CreateFieldMappingResponse> {
         const { xRevertApiToken, xRevertTId, xRevertTToken, xApiVersion, body: _body } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 "/crm/field-mapping"
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
@@ -149,7 +149,7 @@ export class FieldMapping {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -158,7 +158,7 @@ export class FieldMapping {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -167,7 +167,7 @@ export class FieldMapping {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -176,7 +176,7 @@ export class FieldMapping {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -185,14 +185,14 @@ export class FieldMapping {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }

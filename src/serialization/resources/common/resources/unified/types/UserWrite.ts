@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const UserWrite: core.serialization.ObjectSchema<serializers.common.UserWrite.Raw, Vellum.common.UserWrite> =
+export const UserWrite: core.serialization.ObjectSchema<serializers.common.UserWrite.Raw, Revert.common.UserWrite> =
     core.serialization.object({
         firstName: core.serialization.string(),
         lastName: core.serialization.string(),

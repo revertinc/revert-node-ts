@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const TicketStatus: core.serialization.Schema<serializers.common.TicketStatus.Raw, Vellum.common.TicketStatus> =
+export const TicketStatus: core.serialization.Schema<serializers.common.TicketStatus.Raw, Revert.common.TicketStatus> =
     core.serialization.enum_(["open", "close", "in_progress"]);
 
 export declare namespace TicketStatus {

@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../../../..";
-import * as Vellum from "../../../../../../../../api";
+import * as Revert from "../../../../../../../../api";
 import * as core from "../../../../../../../../core";
 
 export const CreateFieldMappingRequestBody: core.serialization.ObjectSchema<
     serializers.crm.fieldMapping.CreateFieldMappingRequestBody.Raw,
-    Vellum.crm.fieldMapping.CreateFieldMappingRequestBody
+    Revert.crm.fieldMapping.CreateFieldMappingRequestBody
 > = core.serialization.object({
     standardMappings: core.serialization.list(
         core.serialization.lazyObject(

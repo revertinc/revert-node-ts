@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CreateOrUpdateLeadRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateLeadRequest.Raw,
-    Vellum.crm.CreateOrUpdateLeadRequest
+    Revert.crm.CreateOrUpdateLeadRequest
 > = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.LeadWrite));

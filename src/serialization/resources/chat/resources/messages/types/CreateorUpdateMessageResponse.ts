@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CreateorUpdateMessageResponse: core.serialization.ObjectSchema<
     serializers.chat.CreateorUpdateMessageResponse.Raw,
-    Vellum.chat.CreateorUpdateMessageResponse
+    Revert.chat.CreateorUpdateMessageResponse
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../../../..")).common.ResponseStatus),
     result: core.serialization.lazyObject(async () => (await import("../../../../..")).common.Message),

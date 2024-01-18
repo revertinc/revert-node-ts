@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Connection: core.serialization.ObjectSchema<serializers.common.Connection.Raw, Vellum.common.Connection> =
+export const Connection: core.serialization.ObjectSchema<serializers.common.Connection.Raw, Revert.common.Connection> =
     core.serialization.object({
         tpId: core.serialization.property(
             "tp_id",

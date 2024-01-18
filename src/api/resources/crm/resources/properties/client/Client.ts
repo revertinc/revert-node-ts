@@ -4,14 +4,14 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import * as Vellum from "../../../../..";
+import * as Revert from "../../../../..";
 import * as serializers from "../../../../../../serialization";
 import urlJoin from "url-join";
 import * as errors from "../../../../../../errors";
 
 export declare namespace Properties {
     interface Options {
-        environment?: core.Supplier<environments.VellumEnvironment | string>;
+        environment?: core.Supplier<environments.RevertEnvironment | string>;
     }
 
     interface RequestOptions {
@@ -25,26 +25,26 @@ export class Properties {
 
     /**
      * Get object properties for connection
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async getObjectProperties(
-        objectName: Vellum.common.StandardObject,
-        request: Vellum.crm.GetObjectPropertiesRequest,
+        objectName: Revert.common.StandardObject,
+        request: Revert.crm.GetObjectPropertiesRequest,
         requestOptions?: Properties.RequestOptions
-    ): Promise<Vellum.crm.GetObjectPropertiesResponse | undefined> {
+    ): Promise<Revert.crm.GetObjectPropertiesResponse | undefined> {
         const { xRevertApiToken, xRevertTId, xApiVersion } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 `/crm/properties/${await serializers.common.StandardObject.jsonOrThrow(objectName)}`
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -65,7 +65,7 @@ export class Properties {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -74,7 +74,7 @@ export class Properties {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -83,7 +83,7 @@ export class Properties {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -92,7 +92,7 @@ export class Properties {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -101,14 +101,14 @@ export class Properties {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -116,26 +116,26 @@ export class Properties {
 
     /**
      * Set custom properties on an object for a given connection
-     * @throws {@link Vellum.common.UnAuthorizedError}
-     * @throws {@link Vellum.common.InternalServerError}
-     * @throws {@link Vellum.common.NotFoundError}
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
      */
     public async setCustomProperties(
-        objectName: Vellum.common.StandardObject,
-        request: Vellum.crm.SetObjectCustomPropertiesRequest,
+        objectName: Revert.common.StandardObject,
+        request: Revert.crm.SetObjectCustomPropertiesRequest,
         requestOptions?: Properties.RequestOptions
-    ): Promise<Vellum.crm.SetObjectPropertiesResponse | undefined> {
+    ): Promise<Revert.crm.SetObjectPropertiesResponse | undefined> {
         const { xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.VellumEnvironment.Production,
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
                 `/crm/properties/${await serializers.common.StandardObject.jsonOrThrow(objectName)}`
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.589",
+                "X-Fern-SDK-Version": "0.0.592",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -159,7 +159,7 @@ export class Properties {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new Vellum.common.UnAuthorizedError(
+                    throw new Revert.common.UnAuthorizedError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -168,7 +168,7 @@ export class Properties {
                         })
                     );
                 case 500:
-                    throw new Vellum.common.InternalServerError(
+                    throw new Revert.common.InternalServerError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -177,7 +177,7 @@ export class Properties {
                         })
                     );
                 case 404:
-                    throw new Vellum.common.NotFoundError(
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -186,7 +186,7 @@ export class Properties {
                         })
                     );
                 default:
-                    throw new errors.VellumError({
+                    throw new errors.RevertError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -195,14 +195,14 @@ export class Properties {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.VellumTimeoutError();
+                throw new errors.RevertTimeoutError();
             case "unknown":
-                throw new errors.VellumError({
+                throw new errors.RevertError({
                     message: _response.error.errorMessage,
                 });
         }

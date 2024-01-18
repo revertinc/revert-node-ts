@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const EventWrite: core.serialization.ObjectSchema<serializers.common.EventWrite.Raw, Vellum.common.EventWrite> =
+export const EventWrite: core.serialization.ObjectSchema<serializers.common.EventWrite.Raw, Revert.common.EventWrite> =
     core.serialization.object({
         type: core.serialization.string(),
         subject: core.serialization.string(),

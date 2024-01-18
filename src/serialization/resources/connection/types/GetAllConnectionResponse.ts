@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../..";
-import * as Vellum from "../../../../api";
+import * as Revert from "../../../../api";
 import * as core from "../../../../core";
 
 export const GetAllConnectionResponse: core.serialization.Schema<
     serializers.GetAllConnectionResponse.Raw,
-    Vellum.GetAllConnectionResponse
+    Revert.GetAllConnectionResponse
 > = core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).common.Connection));
 
 export declare namespace GetAllConnectionResponse {

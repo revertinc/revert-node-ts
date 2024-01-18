@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const TaskWrite: core.serialization.ObjectSchema<serializers.common.TaskWrite.Raw, Vellum.common.TaskWrite> =
+export const TaskWrite: core.serialization.ObjectSchema<serializers.common.TaskWrite.Raw, Revert.common.TaskWrite> =
     core.serialization.object({
         subject: core.serialization.string(),
         body: core.serialization.string(),

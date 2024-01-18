@@ -3,10 +3,10 @@
  */
 
 import * as errors from "../../../../../../errors";
-import * as Vellum from "../../../../..";
+import * as Revert from "../../../../..";
 
-export class UnAuthorizedError extends errors.VellumError {
-    constructor(body: Vellum.common.BaseError) {
+export class UnAuthorizedError extends errors.RevertError {
+    constructor(body: Revert.common.BaseError) {
         super({
             message: "UnAuthorizedError",
             statusCode: 401,

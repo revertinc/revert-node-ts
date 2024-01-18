@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const NoteWrite: core.serialization.ObjectSchema<serializers.common.NoteWrite.Raw, Vellum.common.NoteWrite> =
+export const NoteWrite: core.serialization.ObjectSchema<serializers.common.NoteWrite.Raw, Revert.common.NoteWrite> =
     core.serialization.object({
         content: core.serialization.string(),
         associations: core.serialization

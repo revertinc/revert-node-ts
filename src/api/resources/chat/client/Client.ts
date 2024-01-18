@@ -10,7 +10,7 @@ import { Users } from "../resources/users/client/Client";
 
 export declare namespace Chat {
     interface Options {
-        environment?: core.Supplier<environments.VellumEnvironment | string>;
+        environment?: core.Supplier<environments.RevertEnvironment | string>;
     }
 
     interface RequestOptions {

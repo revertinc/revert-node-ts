@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CreateOrUpdateTaskRequest: core.serialization.ObjectSchema<
     serializers.ticket.CreateOrUpdateTaskRequest.Raw,
-    Vellum.ticket.CreateOrUpdateTaskRequest
+    Revert.ticket.CreateOrUpdateTaskRequest
 > = core.serialization.lazyObject(async () => (await import("../../../../..")).common.TaskTicketWrite);
 
 export declare namespace CreateOrUpdateTaskRequest {

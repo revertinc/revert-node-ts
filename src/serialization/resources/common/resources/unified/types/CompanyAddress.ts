@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CompanyAddress: core.serialization.ObjectSchema<
     serializers.common.CompanyAddress.Raw,
-    Vellum.common.CompanyAddress
+    Revert.common.CompanyAddress
 > = core.serialization.object({
     street: core.serialization.string().optional(),
     city: core.serialization.string(),

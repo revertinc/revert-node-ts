@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../..";
-import * as Vellum from "../../../../api";
+import * as Revert from "../../../../api";
 import * as core from "../../../../core";
 
 export const CrmMetadataResponse: core.serialization.ObjectSchema<
     serializers.CrmMetadataResponse.Raw,
-    Vellum.CrmMetadataResponse
+    Revert.CrmMetadataResponse
 > = core.serialization.object({
     status: core.serialization.string(),
     data: core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).CrmMetadata)),

@@ -3,10 +3,10 @@
  */
 
 import * as errors from "../../../../../../errors";
-import * as Vellum from "../../../../..";
+import * as Revert from "../../../../..";
 
-export class InternalServerError extends errors.VellumError {
-    constructor(body: Vellum.common.BaseError) {
+export class InternalServerError extends errors.RevertError {
+    constructor(body: Revert.common.BaseError) {
         super({
             message: "InternalServerError",
             statusCode: 500,

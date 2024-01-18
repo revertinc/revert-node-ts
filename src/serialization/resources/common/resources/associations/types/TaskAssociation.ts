@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const TaskAssociation: core.serialization.ObjectSchema<
     serializers.common.TaskAssociation.Raw,
-    Vellum.common.TaskAssociation
+    Revert.common.TaskAssociation
 > = core.serialization.object({
     dealId: core.serialization.string().optional(),
 });

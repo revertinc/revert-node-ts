@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const TaskTicket: core.serialization.ObjectSchema<serializers.common.TaskTicket.Raw, Vellum.common.TaskTicket> =
+export const TaskTicket: core.serialization.ObjectSchema<serializers.common.TaskTicket.Raw, Revert.common.TaskTicket> =
     core.serialization
         .object({})
         .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))

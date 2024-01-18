@@ -8,7 +8,7 @@ import { FieldMapping as FieldMapping_ } from "../resources/fieldMapping/client/
 
 export declare namespace FieldMapping {
     interface Options {
-        environment?: core.Supplier<environments.VellumEnvironment | string>;
+        environment?: core.Supplier<environments.RevertEnvironment | string>;
     }
 
     interface RequestOptions {

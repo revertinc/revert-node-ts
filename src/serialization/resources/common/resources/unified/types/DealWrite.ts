@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const DealWrite: core.serialization.ObjectSchema<serializers.common.DealWrite.Raw, Vellum.common.DealWrite> =
+export const DealWrite: core.serialization.ObjectSchema<serializers.common.DealWrite.Raw, Revert.common.DealWrite> =
     core.serialization.object({
         amount: core.serialization.number(),
         priority: core.serialization.string().optional(),

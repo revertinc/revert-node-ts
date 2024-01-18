@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../..";
-import * as Vellum from "../../../../api";
+import * as Revert from "../../../../api";
 import * as core from "../../../../core";
 
 export const DeleteConnectionWebhookResponse: core.serialization.ObjectSchema<
     serializers.DeleteConnectionWebhookResponse.Raw,
-    Vellum.DeleteConnectionWebhookResponse
+    Revert.DeleteConnectionWebhookResponse
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../..")).common.ResponseStatus),
     error: core.serialization.string().optional(),

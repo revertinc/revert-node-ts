@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Contact: core.serialization.ObjectSchema<serializers.common.Contact.Raw, Vellum.common.Contact> =
+export const Contact: core.serialization.ObjectSchema<serializers.common.Contact.Raw, Revert.common.Contact> =
     core.serialization
         .object({})
         .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))

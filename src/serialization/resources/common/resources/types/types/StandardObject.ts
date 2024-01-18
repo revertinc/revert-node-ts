@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const StandardObject: core.serialization.Schema<
     serializers.common.StandardObject.Raw,
-    Vellum.common.StandardObject
+    Revert.common.StandardObject
 > = core.serialization.enum_(["company", "contact", "deal", "event", "lead", "note", "task", "user"]);
 
 export declare namespace StandardObject {

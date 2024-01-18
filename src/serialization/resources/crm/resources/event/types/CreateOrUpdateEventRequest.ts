@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CreateOrUpdateEventRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateEventRequest.Raw,
-    Vellum.crm.CreateOrUpdateEventRequest
+    Revert.crm.CreateOrUpdateEventRequest
 > = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.EventWrite));

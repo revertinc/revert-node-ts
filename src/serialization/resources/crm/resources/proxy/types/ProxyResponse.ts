@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const ProxyResponse: core.serialization.ObjectSchema<
     serializers.crm.ProxyResponse.Raw,
-    Vellum.crm.ProxyResponse
+    Revert.crm.ProxyResponse
 > = core.serialization.object({
     result: core.serialization.unknown(),
 });

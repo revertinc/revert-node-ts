@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const ContactAssociation: core.serialization.ObjectSchema<
     serializers.common.ContactAssociation.Raw,
-    Vellum.common.ContactAssociation
+    Revert.common.ContactAssociation
 > = core.serialization.object({
     dealId: core.serialization.string().optional(),
     leadId: core.serialization.string().optional(),

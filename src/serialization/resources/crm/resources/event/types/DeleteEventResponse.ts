@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const DeleteEventResponse: core.serialization.ObjectSchema<
     serializers.crm.DeleteEventResponse.Raw,
-    Vellum.crm.DeleteEventResponse
+    Revert.crm.DeleteEventResponse
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../../../..")).common.ResponseStatus),
     message: core.serialization.string(),

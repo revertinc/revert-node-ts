@@ -10,9 +10,9 @@ import { Crm } from "./api/resources/crm/client/Client";
 import { Metadata } from "./api/resources/metadata/client/Client";
 import { Ticket } from "./api/resources/ticket/client/Client";
 
-export declare namespace VellumClient {
+export declare namespace RevertClient {
     interface Options {
-        environment?: core.Supplier<environments.VellumEnvironment | string>;
+        environment?: core.Supplier<environments.RevertEnvironment | string>;
     }
 
     interface RequestOptions {
@@ -21,8 +21,8 @@ export declare namespace VellumClient {
     }
 }
 
-export class VellumClient {
-    constructor(protected readonly _options: VellumClient.Options = {}) {}
+export class RevertClient {
+    constructor(protected readonly _options: RevertClient.Options = {}) {}
 
     protected _chat: Chat | undefined;
 

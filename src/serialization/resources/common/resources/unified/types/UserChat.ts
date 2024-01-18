@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const UserChat: core.serialization.ObjectSchema<serializers.common.UserChat.Raw, Vellum.common.UserChat> =
+export const UserChat: core.serialization.ObjectSchema<serializers.common.UserChat.Raw, Revert.common.UserChat> =
     core.serialization.object({
         id: core.serialization.string(),
         name: core.serialization.string(),

@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Lead: core.serialization.ObjectSchema<serializers.common.Lead.Raw, Vellum.common.Lead> = core.serialization
+export const Lead: core.serialization.ObjectSchema<serializers.common.Lead.Raw, Revert.common.Lead> = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.LeadWrite));

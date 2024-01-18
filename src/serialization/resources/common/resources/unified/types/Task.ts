@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const Task: core.serialization.ObjectSchema<serializers.common.Task.Raw, Vellum.common.Task> = core.serialization
+export const Task: core.serialization.ObjectSchema<serializers.common.Task.Raw, Revert.common.Task> = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.TaskWrite));

@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const RevertUser: core.serialization.ObjectSchema<serializers.common.RevertUser.Raw, Vellum.common.RevertUser> =
+export const RevertUser: core.serialization.ObjectSchema<serializers.common.RevertUser.Raw, Revert.common.RevertUser> =
     core.serialization.object({
         id: core.serialization.string(),
         domain: core.serialization.string(),

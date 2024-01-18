@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
-export const LeadWrite: core.serialization.ObjectSchema<serializers.common.LeadWrite.Raw, Vellum.common.LeadWrite> =
+export const LeadWrite: core.serialization.ObjectSchema<serializers.common.LeadWrite.Raw, Revert.common.LeadWrite> =
     core.serialization.object({
         firstName: core.serialization.string(),
         lastName: core.serialization.string(),

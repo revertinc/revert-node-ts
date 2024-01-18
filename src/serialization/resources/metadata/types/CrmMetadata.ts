@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../..";
-import * as Vellum from "../../../../api";
+import * as Revert from "../../../../api";
 import * as core from "../../../../core";
 
-export const CrmMetadata: core.serialization.ObjectSchema<serializers.CrmMetadata.Raw, Vellum.CrmMetadata> =
+export const CrmMetadata: core.serialization.ObjectSchema<serializers.CrmMetadata.Raw, Revert.CrmMetadata> =
     core.serialization.object({
         integrationId: core.serialization.string(),
         name: core.serialization.string(),

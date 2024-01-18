@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "../../../../..";
-import * as Vellum from "../../../../../../api";
+import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const CommentTicketWrite: core.serialization.ObjectSchema<
     serializers.common.CommentTicketWrite.Raw,
-    Vellum.common.CommentTicketWrite
+    Revert.common.CommentTicketWrite
 > = core.serialization.object({
     body: core.serialization.string(),
     taskId: core.serialization.string(),
