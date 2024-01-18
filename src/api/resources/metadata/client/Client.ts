@@ -43,7 +43,7 @@ export class Metadata {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.586",
+                "X-Fern-SDK-Version": "0.0.587",
                 "x-revert-public-token": xRevertPublicToken,
             },
             contentType: "application/json",
