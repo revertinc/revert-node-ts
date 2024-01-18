@@ -1,0 +1,1 @@
+export { SearchCompaniesRequest } from "./SearchCompaniesRequest";

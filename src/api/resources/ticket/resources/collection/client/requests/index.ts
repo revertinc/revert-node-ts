@@ -1,0 +1,1 @@
+export { GetCollectionsRequest } from "./GetCollectionsRequest";

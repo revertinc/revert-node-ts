@@ -1,0 +1,1 @@
+export { SearchContactsRequest } from "./SearchContactsRequest";
