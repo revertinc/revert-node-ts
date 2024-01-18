@@ -21,4 +21,3 @@ export * from "./Message";
 export * from "./TaskTicketWrite";
 export * from "./TaskTicket";
 export * from "./CommentTicketWrite";
-export * from "./CommentTicket";

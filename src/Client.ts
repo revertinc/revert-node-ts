@@ -7,7 +7,6 @@ import * as core from "./core";
 import { Chat } from "./api/resources/chat/client/Client";
 import { Connection } from "./api/resources/connection/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
-import { Internal } from "./api/resources/internal/client/Client";
 import { Metadata } from "./api/resources/metadata/client/Client";
 import { Ticket } from "./api/resources/ticket/client/Client";
 
@@ -41,12 +40,6 @@ export class RevertRevertApiClient {
 
     public get crm(): Crm {
         return (this._crm ??= new Crm(this._options));
-    }
-
-    protected _internal: Internal | undefined;
-
-    public get internal(): Internal {
-        return (this._internal ??= new Internal(this._options));
     }
 
     protected _metadata: Metadata | undefined;
