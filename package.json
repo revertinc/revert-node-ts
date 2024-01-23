@@ -1,6 +1,6 @@
 {
     "name": "@revertdotdev/node",
-    "version": "0.0.596",
+    "version": "0.0.598",
     "private": false,
     "repository": "https://github.com/revertinc/revert-node-ts",
     "main": "./index.js",
