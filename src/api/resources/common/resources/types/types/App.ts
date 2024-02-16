@@ -14,4 +14,5 @@ export interface App {
     account?: Revert.common.Account;
     connections?: Revert.common.Connection[];
     isRevertApp: boolean;
+    appConfig?: Revert.common.AppConfig;
 }

@@ -7,3 +7,4 @@ export * from "./StandardObject";
 export * from "./ResponseStatus";
 export * from "./TicketStatus";
 export * from "./TicketPriority";
+export * from "./AppConfig";

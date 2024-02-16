@@ -22,6 +22,10 @@ export const App: core.serialization.ObjectSchema<serializers.common.App.Raw, Re
             .list(core.serialization.lazyObject(async () => (await import("../../../../..")).common.Connection))
             .optional(),
         isRevertApp: core.serialization.property("is_revert_app", core.serialization.boolean()),
+        appConfig: core.serialization.property(
+            "app_config",
+            core.serialization.lazyObject(async () => (await import("../../../../..")).common.AppConfig).optional()
+        ),
     });
 
 export declare namespace App {
@@ -35,5 +39,6 @@ export declare namespace App {
         account?: serializers.common.Account.Raw | null;
         connections?: serializers.common.Connection.Raw[] | null;
         is_revert_app: boolean;
+        app_config?: serializers.common.AppConfig.Raw | null;
     }
 }
