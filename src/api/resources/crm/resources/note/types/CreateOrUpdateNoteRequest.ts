@@ -4,4 +4,7 @@
 
 import * as Revert from "../../../../..";
 
-export interface CreateOrUpdateNoteRequest extends Revert.common.NoteWrite {}
+export interface CreateOrUpdateNoteRequest extends Revert.common.NoteWrite {
+    /** Any fields that are not unified yet/non-unifiable come inside this `json` object. */
+    additional?: unknown;
+}

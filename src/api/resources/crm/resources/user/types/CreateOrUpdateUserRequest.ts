@@ -4,4 +4,7 @@
 
 import * as Revert from "../../../../..";
 
-export interface CreateOrUpdateUserRequest extends Revert.common.UserWrite {}
+export interface CreateOrUpdateUserRequest extends Revert.common.UserWrite {
+    /** Any fields that are not unified yet/non-unifiable come inside this `json` object. */
+    additional?: unknown;
+}

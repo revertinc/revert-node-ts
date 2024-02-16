@@ -4,4 +4,7 @@
 
 import * as Revert from "../../../../..";
 
-export interface CreateOrUpdateDealRequest extends Revert.common.DealWrite {}
+export interface CreateOrUpdateDealRequest extends Revert.common.DealWrite {
+    /** Any fields that are not unified yet/non-unifiable come inside this `json` object. */
+    additional?: unknown;
+}

@@ -10,9 +10,13 @@ export const CreateOrUpdateUserRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateUserRequest.Raw,
     Revert.crm.CreateOrUpdateUserRequest
 > = core.serialization
-    .object({})
+    .object({
+        additional: core.serialization.unknown(),
+    })
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.UserWrite));
 
 export declare namespace CreateOrUpdateUserRequest {
-    interface Raw extends serializers.common.UserWrite.Raw {}
+    interface Raw extends serializers.common.UserWrite.Raw {
+        additional?: unknown;
+    }
 }

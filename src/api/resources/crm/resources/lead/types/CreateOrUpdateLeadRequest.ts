@@ -4,4 +4,7 @@
 
 import * as Revert from "../../../../..";
 
-export interface CreateOrUpdateLeadRequest extends Revert.common.LeadWrite {}
+export interface CreateOrUpdateLeadRequest extends Revert.common.LeadWrite {
+    /** Any fields that are not unified yet/non-unifiable come inside this `json` object. */
+    additional?: unknown;
+}

@@ -9,8 +9,14 @@ import * as core from "../../../../../../core";
 export const CreateOrUpdateContactRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateContactRequest.Raw,
     Revert.crm.CreateOrUpdateContactRequest
-> = core.serialization.lazyObject(async () => (await import("../../../../..")).common.ContactWrite);
+> = core.serialization
+    .object({
+        additional: core.serialization.unknown(),
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.ContactWrite));
 
 export declare namespace CreateOrUpdateContactRequest {
-    type Raw = serializers.common.ContactWrite.Raw;
+    interface Raw extends serializers.common.ContactWrite.Raw {
+        additional?: unknown;
+    }
 }

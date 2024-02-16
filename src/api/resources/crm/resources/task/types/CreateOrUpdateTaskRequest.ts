@@ -4,4 +4,7 @@
 
 import * as Revert from "../../../../..";
 
-export interface CreateOrUpdateTaskRequest extends Revert.common.TaskWrite {}
+export interface CreateOrUpdateTaskRequest extends Revert.common.TaskWrite {
+    /** Any fields that are not unified yet/non-unifiable come inside this `json` object. */
+    additional?: unknown;
+}

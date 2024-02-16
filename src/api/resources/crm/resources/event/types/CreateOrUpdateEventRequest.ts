@@ -4,4 +4,7 @@
 
 import * as Revert from "../../../../..";
 
-export interface CreateOrUpdateEventRequest extends Revert.common.EventWrite {}
+export interface CreateOrUpdateEventRequest extends Revert.common.EventWrite {
+    /** Any fields that are not unified yet/non-unifiable come inside this `json` object. */
+    additional?: unknown;
+}

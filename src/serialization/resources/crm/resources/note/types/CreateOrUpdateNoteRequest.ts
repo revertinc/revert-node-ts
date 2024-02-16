@@ -10,9 +10,13 @@ export const CreateOrUpdateNoteRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateNoteRequest.Raw,
     Revert.crm.CreateOrUpdateNoteRequest
 > = core.serialization
-    .object({})
+    .object({
+        additional: core.serialization.unknown(),
+    })
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.NoteWrite));
 
 export declare namespace CreateOrUpdateNoteRequest {
-    interface Raw extends serializers.common.NoteWrite.Raw {}
+    interface Raw extends serializers.common.NoteWrite.Raw {
+        additional?: unknown;
+    }
 }

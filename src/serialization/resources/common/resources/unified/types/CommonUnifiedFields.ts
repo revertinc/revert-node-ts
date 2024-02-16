@@ -14,7 +14,7 @@ export const CommonUnifiedFields: core.serialization.ObjectSchema<
     remoteId: core.serialization.string(),
     createdTimestamp: core.serialization.unknown(),
     updatedTimestamp: core.serialization.unknown(),
-    additional: core.serialization.unknown(),
+    additional: core.serialization.unknown().optional(),
 });
 
 export declare namespace CommonUnifiedFields {
@@ -23,6 +23,6 @@ export declare namespace CommonUnifiedFields {
         remoteId: string;
         createdTimestamp?: unknown;
         updatedTimestamp?: unknown;
-        additional?: unknown;
+        additional?: unknown | null;
     }
 }

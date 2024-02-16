@@ -10,9 +10,13 @@ export const CreateOrUpdateTaskRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateTaskRequest.Raw,
     Revert.crm.CreateOrUpdateTaskRequest
 > = core.serialization
-    .object({})
+    .object({
+        additional: core.serialization.unknown(),
+    })
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.TaskWrite));
 
 export declare namespace CreateOrUpdateTaskRequest {
-    interface Raw extends serializers.common.TaskWrite.Raw {}
+    interface Raw extends serializers.common.TaskWrite.Raw {
+        additional?: unknown;
+    }
 }

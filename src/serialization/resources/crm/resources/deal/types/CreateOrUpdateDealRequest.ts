@@ -10,9 +10,13 @@ export const CreateOrUpdateDealRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateDealRequest.Raw,
     Revert.crm.CreateOrUpdateDealRequest
 > = core.serialization
-    .object({})
+    .object({
+        additional: core.serialization.unknown(),
+    })
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.DealWrite));
 
 export declare namespace CreateOrUpdateDealRequest {
-    interface Raw extends serializers.common.DealWrite.Raw {}
+    interface Raw extends serializers.common.DealWrite.Raw {
+        additional?: unknown;
+    }
 }

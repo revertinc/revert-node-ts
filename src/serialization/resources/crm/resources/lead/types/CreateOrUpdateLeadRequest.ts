@@ -10,9 +10,13 @@ export const CreateOrUpdateLeadRequest: core.serialization.ObjectSchema<
     serializers.crm.CreateOrUpdateLeadRequest.Raw,
     Revert.crm.CreateOrUpdateLeadRequest
 > = core.serialization
-    .object({})
+    .object({
+        additional: core.serialization.unknown(),
+    })
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.LeadWrite));
 
 export declare namespace CreateOrUpdateLeadRequest {
-    interface Raw extends serializers.common.LeadWrite.Raw {}
+    interface Raw extends serializers.common.LeadWrite.Raw {
+        additional?: unknown;
+    }
 }

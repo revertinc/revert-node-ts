@@ -4,4 +4,7 @@
 
 import * as Revert from "../../../../..";
 
-export type CreateOrUpdateContactRequest = Revert.common.ContactWrite;
+export interface CreateOrUpdateContactRequest extends Revert.common.ContactWrite {
+    /** Any fields that are not unified yet/non-unifiable come inside this `json` object. */
+    additional?: unknown;
+}
