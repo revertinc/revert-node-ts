@@ -4,4 +4,4 @@
 
 import * as Revert from "../../../../..";
 
-export interface Task extends Revert.common.CommonUnifiedFields, Revert.common.TaskWrite {}
+export interface Task extends Revert.common.CommonUnifiedFields, Revert.common.TaskRead {}

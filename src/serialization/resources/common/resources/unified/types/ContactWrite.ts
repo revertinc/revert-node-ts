@@ -9,22 +9,16 @@ import * as core from "../../../../../../core";
 export const ContactWrite: core.serialization.ObjectSchema<
     serializers.common.ContactWrite.Raw,
     Revert.common.ContactWrite
-> = core.serialization.object({
-    firstName: core.serialization.string(),
-    lastName: core.serialization.string(),
-    phone: core.serialization.string(),
-    email: core.serialization.string(),
-    associations: core.serialization
-        .lazyObject(async () => (await import("../../../../..")).common.ContactAssociation)
-        .optional(),
-});
+> = core.serialization
+    .object({
+        associations: core.serialization
+            .lazyObject(async () => (await import("../../../../..")).common.ContactAssociation)
+            .optional(),
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.ContactRead));
 
 export declare namespace ContactWrite {
-    interface Raw {
-        firstName: string;
-        lastName: string;
-        phone: string;
-        email: string;
+    interface Raw extends serializers.common.ContactRead.Raw {
         associations?: serializers.common.ContactAssociation.Raw | null;
     }
 }

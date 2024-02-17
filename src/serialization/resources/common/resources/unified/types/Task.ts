@@ -9,8 +9,8 @@ import * as core from "../../../../../../core";
 export const Task: core.serialization.ObjectSchema<serializers.common.Task.Raw, Revert.common.Task> = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
-    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.TaskWrite));
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.TaskRead));
 
 export declare namespace Task {
-    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.TaskWrite.Raw {}
+    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.TaskRead.Raw {}
 }

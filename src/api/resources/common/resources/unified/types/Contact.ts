@@ -4,4 +4,4 @@
 
 import * as Revert from "../../../../..";
 
-export interface Contact extends Revert.common.CommonUnifiedFields, Revert.common.ContactWrite {}
+export interface Contact extends Revert.common.CommonUnifiedFields, Revert.common.ContactRead {}

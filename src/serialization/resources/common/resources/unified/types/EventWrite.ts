@@ -7,28 +7,16 @@ import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const EventWrite: core.serialization.ObjectSchema<serializers.common.EventWrite.Raw, Revert.common.EventWrite> =
-    core.serialization.object({
-        type: core.serialization.string(),
-        subject: core.serialization.string(),
-        startDateTime: core.serialization.string(),
-        endDateTime: core.serialization.string(),
-        isAllDayEvent: core.serialization.boolean(),
-        description: core.serialization.string(),
-        location: core.serialization.string(),
-        associations: core.serialization
-            .lazyObject(async () => (await import("../../../../..")).common.EventAssociation)
-            .optional(),
-    });
+    core.serialization
+        .object({
+            associations: core.serialization
+                .lazyObject(async () => (await import("../../../../..")).common.EventAssociation)
+                .optional(),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.EventRead));
 
 export declare namespace EventWrite {
-    interface Raw {
-        type: string;
-        subject: string;
-        startDateTime: string;
-        endDateTime: string;
-        isAllDayEvent: boolean;
-        description: string;
-        location: string;
+    interface Raw extends serializers.common.EventRead.Raw {
         associations?: serializers.common.EventAssociation.Raw | null;
     }
 }

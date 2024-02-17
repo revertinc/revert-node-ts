@@ -10,8 +10,8 @@ export const Event: core.serialization.ObjectSchema<serializers.common.Event.Raw
     core.serialization
         .object({})
         .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
-        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.EventWrite));
+        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.EventRead));
 
 export declare namespace Event {
-    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.EventWrite.Raw {}
+    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.EventRead.Raw {}
 }

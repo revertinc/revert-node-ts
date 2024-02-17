@@ -5,15 +5,5 @@
 import * as Revert from "../../../../..";
 
 export interface TaskWrite {
-    /** Subject of the task. */
-    subject: string;
-    /** Body of the task description. */
-    body: string;
-    /** The priority of the task in hand. (not supported by pipedrive) */
-    priority: string;
-    /** Completion status of the task. */
-    status: string;
-    /** The date when this task is due. */
-    dueDate?: unknown;
     associations?: Revert.common.TaskAssociation;
 }

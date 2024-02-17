@@ -9,8 +9,8 @@ import * as core from "../../../../../../core";
 export const Note: core.serialization.ObjectSchema<serializers.common.Note.Raw, Revert.common.Note> = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
-    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.NoteWrite));
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.NoteRead));
 
 export declare namespace Note {
-    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.NoteWrite.Raw {}
+    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.NoteRead.Raw {}
 }

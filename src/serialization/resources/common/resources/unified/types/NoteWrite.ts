@@ -7,16 +7,16 @@ import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const NoteWrite: core.serialization.ObjectSchema<serializers.common.NoteWrite.Raw, Revert.common.NoteWrite> =
-    core.serialization.object({
-        content: core.serialization.string(),
-        associations: core.serialization
-            .lazyObject(async () => (await import("../../../../..")).common.DealAssociation)
-            .optional(),
-    });
+    core.serialization
+        .object({
+            associations: core.serialization
+                .lazyObject(async () => (await import("../../../../..")).common.DealAssociation)
+                .optional(),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.NoteRead));
 
 export declare namespace NoteWrite {
-    interface Raw {
-        content: string;
+    interface Raw extends serializers.common.NoteRead.Raw {
         associations?: serializers.common.DealAssociation.Raw | null;
     }
 }

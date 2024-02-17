@@ -7,22 +7,16 @@ import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const LeadWrite: core.serialization.ObjectSchema<serializers.common.LeadWrite.Raw, Revert.common.LeadWrite> =
-    core.serialization.object({
-        firstName: core.serialization.string(),
-        lastName: core.serialization.string(),
-        phone: core.serialization.string(),
-        email: core.serialization.string(),
-        associations: core.serialization
-            .lazyObject(async () => (await import("../../../../..")).common.LeadAssociation)
-            .optional(),
-    });
+    core.serialization
+        .object({
+            associations: core.serialization
+                .lazyObject(async () => (await import("../../../../..")).common.LeadAssociation)
+                .optional(),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.LeadRead));
 
 export declare namespace LeadWrite {
-    interface Raw {
-        firstName: string;
-        lastName: string;
-        phone: string;
-        email: string;
+    interface Raw extends serializers.common.LeadRead.Raw {
         associations?: serializers.common.LeadAssociation.Raw | null;
     }
 }

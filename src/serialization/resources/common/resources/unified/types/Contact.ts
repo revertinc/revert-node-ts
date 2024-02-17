@@ -10,8 +10,8 @@ export const Contact: core.serialization.ObjectSchema<serializers.common.Contact
     core.serialization
         .object({})
         .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
-        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.ContactWrite));
+        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.ContactRead));
 
 export declare namespace Contact {
-    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.ContactWrite.Raw {}
+    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.ContactRead.Raw {}
 }

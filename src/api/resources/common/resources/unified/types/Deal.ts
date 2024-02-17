@@ -4,4 +4,4 @@
 
 import * as Revert from "../../../../..";
 
-export interface Deal extends Revert.common.CommonUnifiedFields, Revert.common.DealWrite {}
+export interface Deal extends Revert.common.CommonUnifiedFields, Revert.common.DealRead {}

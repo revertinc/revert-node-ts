@@ -4,20 +4,6 @@
 
 import * as Revert from "../../../../..";
 
-export interface EventWrite {
-    /** The type of the event in the CRM. */
-    type: string;
-    /** The Subject of the event/meeting in the CRM. */
-    subject: string;
-    /** Event start date time. */
-    startDateTime: string;
-    /** Event end date time. */
-    endDateTime: string;
-    /** Is `true` if the event is an all day event. */
-    isAllDayEvent: boolean;
-    /** Description of the event/meeting. */
-    description: string;
-    /** The location of the event/meeting. */
-    location: string;
+export interface EventWrite extends Revert.common.EventRead {
     associations?: Revert.common.EventAssociation;
 }

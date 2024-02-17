@@ -7,28 +7,16 @@ import * as Revert from "../../../../../../api";
 import * as core from "../../../../../../core";
 
 export const DealWrite: core.serialization.ObjectSchema<serializers.common.DealWrite.Raw, Revert.common.DealWrite> =
-    core.serialization.object({
-        amount: core.serialization.number(),
-        priority: core.serialization.string().optional(),
-        stage: core.serialization.string(),
-        name: core.serialization.string(),
-        expectedCloseDate: core.serialization.unknown(),
-        isWon: core.serialization.boolean(),
-        probability: core.serialization.number(),
-        associations: core.serialization
-            .lazyObject(async () => (await import("../../../../..")).common.DealAssociation)
-            .optional(),
-    });
+    core.serialization
+        .object({
+            associations: core.serialization
+                .lazyObject(async () => (await import("../../../../..")).common.DealAssociation)
+                .optional(),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.DealRead));
 
 export declare namespace DealWrite {
-    interface Raw {
-        amount: number;
-        priority?: string | null;
-        stage: string;
-        name: string;
-        expectedCloseDate?: unknown;
-        isWon: boolean;
-        probability: number;
+    interface Raw extends serializers.common.DealRead.Raw {
         associations?: serializers.common.DealAssociation.Raw | null;
     }
 }

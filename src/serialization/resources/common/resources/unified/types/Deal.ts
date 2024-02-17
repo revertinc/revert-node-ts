@@ -9,8 +9,8 @@ import * as core from "../../../../../../core";
 export const Deal: core.serialization.ObjectSchema<serializers.common.Deal.Raw, Revert.common.Deal> = core.serialization
     .object({})
     .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.CommonUnifiedFields))
-    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.DealWrite));
+    .extend(core.serialization.lazyObject(async () => (await import("../../../../..")).common.DealRead));
 
 export declare namespace Deal {
-    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.DealWrite.Raw {}
+    interface Raw extends serializers.common.CommonUnifiedFields.Raw, serializers.common.DealRead.Raw {}
 }

@@ -4,4 +4,4 @@
 
 import * as Revert from "../../../../..";
 
-export interface Event extends Revert.common.CommonUnifiedFields, Revert.common.EventWrite {}
+export interface Event extends Revert.common.CommonUnifiedFields, Revert.common.EventRead {}

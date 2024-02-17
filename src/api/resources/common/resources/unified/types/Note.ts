@@ -4,4 +4,4 @@
 
 import * as Revert from "../../../../..";
 
-export interface Note extends Revert.common.CommonUnifiedFields, Revert.common.NoteWrite {}
+export interface Note extends Revert.common.CommonUnifiedFields, Revert.common.NoteRead {}

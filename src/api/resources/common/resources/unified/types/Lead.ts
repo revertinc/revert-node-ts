@@ -4,4 +4,4 @@
 
 import * as Revert from "../../../../..";
 
-export interface Lead extends Revert.common.CommonUnifiedFields, Revert.common.LeadWrite {}
+export interface Lead extends Revert.common.CommonUnifiedFields, Revert.common.LeadRead {}

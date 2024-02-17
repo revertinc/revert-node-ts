@@ -8,11 +8,6 @@ import * as core from "../../../../../../core";
 
 export const TaskWrite: core.serialization.ObjectSchema<serializers.common.TaskWrite.Raw, Revert.common.TaskWrite> =
     core.serialization.object({
-        subject: core.serialization.string(),
-        body: core.serialization.string(),
-        priority: core.serialization.string(),
-        status: core.serialization.string(),
-        dueDate: core.serialization.unknown(),
         associations: core.serialization
             .lazyObject(async () => (await import("../../../../..")).common.TaskAssociation)
             .optional(),
@@ -20,11 +15,6 @@ export const TaskWrite: core.serialization.ObjectSchema<serializers.common.TaskW
 
 export declare namespace TaskWrite {
     interface Raw {
-        subject: string;
-        body: string;
-        priority: string;
-        status: string;
-        dueDate?: unknown;
         associations?: serializers.common.TaskAssociation.Raw | null;
     }
 }

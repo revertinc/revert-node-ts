@@ -4,14 +4,6 @@
 
 import * as Revert from "../../../../..";
 
-export interface LeadWrite {
-    /** The first name of the lead in a CRM. */
-    firstName: string;
-    /** The last name of the lead in a CRM. */
-    lastName: string;
-    /** The phone number of the lead in a CRM. */
-    phone: string;
-    /** The email of the lead in a CRM. */
-    email: string;
+export interface LeadWrite extends Revert.common.LeadRead {
     associations?: Revert.common.LeadAssociation;
 }

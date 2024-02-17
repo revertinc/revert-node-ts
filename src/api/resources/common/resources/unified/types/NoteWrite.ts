@@ -4,8 +4,6 @@
 
 import * as Revert from "../../../../..";
 
-export interface NoteWrite {
-    /** The contents of the note in plain text or HTML. */
-    content: string;
+export interface NoteWrite extends Revert.common.NoteRead {
     associations?: Revert.common.DealAssociation;
 }
