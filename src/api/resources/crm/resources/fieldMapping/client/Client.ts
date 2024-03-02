@@ -4,7 +4,10 @@
 
 import * as environments from "../../../../../../environments";
 import * as core from "../../../../../../core";
-import { FieldMapping as FieldMapping_ } from "../resources/fieldMapping/client/Client";
+import * as Revert from "../../../../..";
+import urlJoin from "url-join";
+import * as serializers from "../../../../../../serialization";
+import * as errors from "../../../../../../errors";
 
 export declare namespace FieldMapping {
     interface Options {
@@ -20,9 +23,545 @@ export declare namespace FieldMapping {
 export class FieldMapping {
     constructor(protected readonly _options: FieldMapping.Options = {}) {}
 
-    protected _fieldMapping: FieldMapping_ | undefined;
+    /**
+     * Get field mappings configs for a connection
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     */
+    public async getFieldMappingConfig(
+        request: Revert.crm.GetFieldMappingConfigRequest,
+        requestOptions?: FieldMapping.RequestOptions
+    ): Promise<Revert.crm.GetFieldMappingConfigResponse> {
+        const { xRevertApiToken, xRevertTId, xRevertTToken, xApiVersion } = request;
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
+                "/crm/field-mapping"
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@revertdotdev/node",
+                "X-Fern-SDK-Version": "0.0.704",
+                "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
+                "x-revert-t-id": xRevertTId,
+                "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
+                "x-api-version": xApiVersion != null ? xApiVersion : undefined,
+            },
+            contentType: "application/json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.crm.GetFieldMappingConfigResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
 
-    public get fieldMapping(): FieldMapping_ {
-        return (this._fieldMapping ??= new FieldMapping_(this._options));
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Revert.common.UnAuthorizedError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Revert.common.InternalServerError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.RevertError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.RevertError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.RevertTimeoutError();
+            case "unknown":
+                throw new errors.RevertError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Get field mappings for a connection
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
+     */
+    public async getFieldMappings(
+        request: Revert.crm.GetFieldMappingsRequest,
+        requestOptions?: FieldMapping.RequestOptions
+    ): Promise<Revert.crm.GetFieldMappingsResponse> {
+        const { xRevertApiToken, xRevertTId, xRevertTToken, xApiVersion } = request;
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
+                "/crm/field-mapping/mappings"
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@revertdotdev/node",
+                "X-Fern-SDK-Version": "0.0.704",
+                "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
+                "x-revert-t-id": xRevertTId,
+                "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
+                "x-api-version": xApiVersion != null ? xApiVersion : undefined,
+            },
+            contentType: "application/json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.crm.GetFieldMappingsResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Revert.common.UnAuthorizedError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Revert.common.InternalServerError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Revert.common.NotFoundError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.RevertError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.RevertError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.RevertTimeoutError();
+            case "unknown":
+                throw new errors.RevertError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Create field mappings for a connection after user input
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
+     */
+    public async createFieldMapping(
+        request: Revert.crm.CreateFieldMappingRequest,
+        requestOptions?: FieldMapping.RequestOptions
+    ): Promise<Revert.crm.CreateFieldMappingResponse> {
+        const { xRevertApiToken, xRevertTId, xRevertTToken, xApiVersion, body: _body } = request;
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
+                "/crm/field-mapping"
+            ),
+            method: "POST",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@revertdotdev/node",
+                "X-Fern-SDK-Version": "0.0.704",
+                "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
+                "x-revert-t-id": xRevertTId,
+                "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
+                "x-api-version": xApiVersion != null ? xApiVersion : undefined,
+            },
+            contentType: "application/json",
+            body: await serializers.crm.CreateFieldMappingRequestBody.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.crm.CreateFieldMappingResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Revert.common.UnAuthorizedError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Revert.common.InternalServerError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Revert.common.NotFoundError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.RevertError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.RevertError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.RevertTimeoutError();
+            case "unknown":
+                throw new errors.RevertError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Delete field mappings for an account
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
+     */
+    public async deleteFieldMapping(
+        request: Revert.crm.DeleteFieldMappingRequest,
+        requestOptions?: FieldMapping.RequestOptions
+    ): Promise<Revert.crm.DeleteFieldMappingResponse> {
+        const { xRevertApiToken, xRevertTId, xRevertTToken, xApiVersion } = request;
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
+                "/crm/field-mapping"
+            ),
+            method: "DELETE",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@revertdotdev/node",
+                "X-Fern-SDK-Version": "0.0.704",
+                "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
+                "x-revert-t-id": xRevertTId,
+                "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
+                "x-api-version": xApiVersion != null ? xApiVersion : undefined,
+            },
+            contentType: "application/json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.crm.DeleteFieldMappingResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Revert.common.UnAuthorizedError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Revert.common.InternalServerError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Revert.common.NotFoundError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.RevertError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.RevertError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.RevertTimeoutError();
+            case "unknown":
+                throw new errors.RevertError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Create field mappings config for an account
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
+     */
+    public async createAccountFieldMappingConfig(
+        request: Revert.crm.CreateAccountFieldMappingRequest,
+        requestOptions?: FieldMapping.RequestOptions
+    ): Promise<Revert.crm.CreateAccountFieldMappingResponse> {
+        const { xRevertApiToken, xRevertTId, xRevertTToken, xApiVersion, body: _body } = request;
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
+                "/crm/field-mapping/config"
+            ),
+            method: "POST",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@revertdotdev/node",
+                "X-Fern-SDK-Version": "0.0.704",
+                "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
+                "x-revert-t-id": xRevertTId,
+                "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
+                "x-api-version": xApiVersion != null ? xApiVersion : undefined,
+            },
+            contentType: "application/json",
+            body: await serializers.crm.CreateAccountFieldMappingRequestBody.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.crm.CreateAccountFieldMappingResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Revert.common.UnAuthorizedError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Revert.common.InternalServerError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Revert.common.NotFoundError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.RevertError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.RevertError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.RevertTimeoutError();
+            case "unknown":
+                throw new errors.RevertError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Delete field mappings config for an account
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
+     */
+    public async deleteAccountFieldMappingConfig(
+        request: Revert.crm.DeleteAccountFieldMappingConfigRequest,
+        requestOptions?: FieldMapping.RequestOptions
+    ): Promise<Revert.crm.DeleteAccountFieldMappingConfigResponse> {
+        const { xRevertApiToken, xRevertTId, xRevertTToken, xApiVersion } = request;
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
+                "/crm/field-mapping/config"
+            ),
+            method: "DELETE",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@revertdotdev/node",
+                "X-Fern-SDK-Version": "0.0.704",
+                "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
+                "x-revert-t-id": xRevertTId,
+                "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
+                "x-api-version": xApiVersion != null ? xApiVersion : undefined,
+            },
+            contentType: "application/json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.crm.DeleteAccountFieldMappingConfigResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Revert.common.UnAuthorizedError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Revert.common.InternalServerError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Revert.common.NotFoundError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.RevertError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.RevertError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.RevertTimeoutError();
+            case "unknown":
+                throw new errors.RevertError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 }
