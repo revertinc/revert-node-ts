@@ -42,7 +42,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.704",
+                "X-Fern-SDK-Version": "0.0.719",
                 "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
@@ -124,7 +124,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.704",
+                "X-Fern-SDK-Version": "0.0.719",
                 "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
@@ -215,7 +215,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.704",
+                "X-Fern-SDK-Version": "0.0.719",
                 "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
@@ -309,7 +309,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.704",
+                "X-Fern-SDK-Version": "0.0.719",
                 "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
@@ -400,7 +400,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.704",
+                "X-Fern-SDK-Version": "0.0.719",
                 "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
@@ -494,7 +494,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.704",
+                "X-Fern-SDK-Version": "0.0.719",
                 "x-revert-api-token": xRevertApiToken != null ? xRevertApiToken : undefined,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken != null ? xRevertTToken : undefined,
