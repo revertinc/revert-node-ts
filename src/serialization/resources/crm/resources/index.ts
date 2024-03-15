@@ -6,8 +6,6 @@ export * as deal from "./deal";
 export * from "./deal/types";
 export * as event from "./event";
 export * from "./event/types";
-export * as fieldMapping from "./fieldMapping";
-export * from "./fieldMapping/types";
 export * as lead from "./lead";
 export * from "./lead/types";
 export * as note from "./note";

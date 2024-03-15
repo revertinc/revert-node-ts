@@ -8,7 +8,6 @@ import { Company } from "../resources/company/client/Client";
 import { Contact } from "../resources/contact/client/Client";
 import { Deal } from "../resources/deal/client/Client";
 import { Event } from "../resources/event/client/Client";
-import { FieldMapping } from "../resources/fieldMapping/client/Client";
 import { Lead } from "../resources/lead/client/Client";
 import { Note } from "../resources/note/client/Client";
 import { Properties } from "../resources/properties/client/Client";
@@ -52,12 +51,6 @@ export class Crm {
 
     public get event(): Event {
         return (this._event ??= new Event(this._options));
-    }
-
-    protected _fieldMapping: FieldMapping | undefined;
-
-    public get fieldMapping(): FieldMapping {
-        return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
     protected _lead: Lead | undefined;

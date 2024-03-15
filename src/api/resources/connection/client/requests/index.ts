@@ -4,3 +4,4 @@ export { GetAllConnectionRequest } from "./GetAllConnectionRequest";
 export { CreateWebhookRequest } from "./CreateWebhookRequest";
 export { GetConnectionWebhookRequest } from "./GetConnectionWebhookRequest";
 export { DeleteConnectionWebhookRequest } from "./DeleteConnectionWebhookRequest";
+export { GetConnectStatusRequest } from "./GetConnectStatusRequest";

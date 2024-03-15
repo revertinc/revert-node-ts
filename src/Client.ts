@@ -7,6 +7,7 @@ import * as core from "./core";
 import { Chat } from "./api/resources/chat/client/Client";
 import { Connection } from "./api/resources/connection/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
+import { FieldMapping } from "./api/resources/fieldMapping/client/Client";
 import { Metadata } from "./api/resources/metadata/client/Client";
 import { Ticket } from "./api/resources/ticket/client/Client";
 
@@ -40,6 +41,12 @@ export class RevertClient {
 
     public get crm(): Crm {
         return (this._crm ??= new Crm(this._options));
+    }
+
+    protected _fieldMapping: FieldMapping | undefined;
+
+    public get fieldMapping(): FieldMapping {
+        return (this._fieldMapping ??= new FieldMapping(this._options));
     }
 
     protected _metadata: Metadata | undefined;

@@ -9,8 +9,10 @@ import * as core from "../../../../../../core";
 export const GetObjectPropertiesResponse: core.serialization.Schema<
     serializers.crm.GetObjectPropertiesResponse.Raw,
     Revert.crm.GetObjectPropertiesResponse
-> = core.serialization.unknown();
+> = core.serialization.list(
+    core.serialization.lazyObject(async () => (await import("../../../../..")).crm.FieldDetailsTypeRead)
+);
 
 export declare namespace GetObjectPropertiesResponse {
-    type Raw = unknown;
+    type Raw = serializers.crm.FieldDetailsTypeRead.Raw[];
 }

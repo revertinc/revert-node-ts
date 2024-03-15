@@ -5,3 +5,5 @@ export * from "./CreateConnectionWebhookResponse";
 export * from "./GetConnectionWebhookResponse";
 export * from "./CreateConnectionWebhookRequest";
 export * from "./DeleteConnectionWebhookResponse";
+export * from "./GetConnectStatusResponse";
+export * from "./ConnectionStatus";

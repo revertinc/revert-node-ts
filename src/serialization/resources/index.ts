@@ -3,6 +3,8 @@ export * as common from "./common";
 export * as connection from "./connection";
 export * from "./connection/types";
 export * as crm from "./crm";
+export * as fieldMapping from "./fieldMapping";
+export * from "./fieldMapping/types";
 export * as metadata from "./metadata";
 export * from "./metadata/types";
 export * as ticket from "./ticket";

@@ -49,7 +49,7 @@ export class User {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.744",
+                "X-Fern-SDK-Version": "0.0.774",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -153,7 +153,7 @@ export class User {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.744",
+                "X-Fern-SDK-Version": "0.0.774",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -244,7 +244,7 @@ export class User {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.744",
+                "X-Fern-SDK-Version": "0.0.774",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
