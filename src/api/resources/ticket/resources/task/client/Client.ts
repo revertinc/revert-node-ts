@@ -49,7 +49,7 @@ export class Task {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.774",
+                "X-Fern-SDK-Version": "0.0.782",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -153,7 +153,7 @@ export class Task {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.774",
+                "X-Fern-SDK-Version": "0.0.782",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -233,7 +233,12 @@ export class Task {
         request: Revert.ticket.CreateTaskRequest,
         requestOptions?: Task.RequestOptions
     ): Promise<Revert.ticket.CreateOrUpdateTaskResponse> {
-        const { xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
+        const { fields, xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
+        const _queryParams: Record<string, string | string[]> = {};
+        if (fields != null) {
+            _queryParams["fields"] = fields;
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
@@ -243,12 +248,13 @@ export class Task {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.774",
+                "X-Fern-SDK-Version": "0.0.782",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             body: await serializers.ticket.CreateOrUpdateTaskRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),
@@ -328,7 +334,12 @@ export class Task {
         request: Revert.ticket.UpdateTaskRequest,
         requestOptions?: Task.RequestOptions
     ): Promise<Revert.ticket.CreateOrUpdateTaskResponse> {
-        const { xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
+        const { fields, xRevertApiToken, xRevertTId, xApiVersion, body: _body } = request;
+        const _queryParams: Record<string, string | string[]> = {};
+        if (fields != null) {
+            _queryParams["fields"] = fields;
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
@@ -338,12 +349,13 @@ export class Task {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.774",
+                "X-Fern-SDK-Version": "0.0.782",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             body: await serializers.ticket.CreateOrUpdateTaskRequest.jsonOrThrow(_body, {
                 unrecognizedObjectKeys: "strip",
             }),

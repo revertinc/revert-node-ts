@@ -5,6 +5,7 @@
 import * as Revert from "../../../../../..";
 
 export interface CreateTaskRequest {
+    fields?: string;
     /**
      * Your official API key for accessing revert apis.
      */
