@@ -43,7 +43,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.796",
+                "X-Fern-SDK-Version": "0.0.835",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -133,7 +133,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.796",
+                "X-Fern-SDK-Version": "0.0.835",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -223,7 +223,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.796",
+                "X-Fern-SDK-Version": "0.0.835",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
             },
@@ -312,7 +312,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.796",
+                "X-Fern-SDK-Version": "0.0.835",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -405,7 +405,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.796",
+                "X-Fern-SDK-Version": "0.0.835",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -495,7 +495,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.796",
+                "X-Fern-SDK-Version": "0.0.835",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -587,7 +587,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.796",
+                "X-Fern-SDK-Version": "0.0.835",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
             },
@@ -618,6 +618,99 @@ export class Connection {
                     );
                 case 500:
                     throw new Revert.common.InternalServerError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.RevertError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.RevertError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.RevertTimeoutError();
+            case "unknown":
+                throw new errors.RevertError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Import multiple connections for a specific environment. Use this to bulk import connections as a one-time exercise.
+     * @throws {@link Revert.common.UnAuthorizedError}
+     * @throws {@link Revert.common.InternalServerError}
+     * @throws {@link Revert.common.NotFoundError}
+     */
+    public async importConnections(
+        request: Revert.ImportConnectionsRequest,
+        requestOptions?: Connection.RequestOptions
+    ): Promise<Revert.ImportConnectionsResponse> {
+        const { xRevertApiToken, xApiVersion, xRevertTId, body: _body } = request;
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
+                "connection/import"
+            ),
+            method: "POST",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@revertdotdev/node",
+                "X-Fern-SDK-Version": "0.0.835",
+                "x-revert-api-token": xRevertApiToken,
+                "x-api-version": xApiVersion != null ? xApiVersion : undefined,
+                "x-revert-t-id": xRevertTId,
+            },
+            contentType: "application/json",
+            body: await serializers.ImportConnectionsRequestBody.jsonOrThrow(_body, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : undefined,
+            maxRetries: requestOptions?.maxRetries,
+        });
+        if (_response.ok) {
+            return await serializers.ImportConnectionsResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Revert.common.UnAuthorizedError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Revert.common.InternalServerError(
+                        await serializers.common.BaseError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Revert.common.NotFoundError(
                         await serializers.common.BaseError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,

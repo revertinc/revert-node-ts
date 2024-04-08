@@ -7,3 +7,6 @@ export * from "./CreateConnectionWebhookRequest";
 export * from "./DeleteConnectionWebhookResponse";
 export * from "./GetConnectStatusResponse";
 export * from "./ConnectionStatus";
+export * from "./ConnectionImport";
+export * from "./ImportConnectionsRequestBody";
+export * from "./ImportConnectionsResponse";
