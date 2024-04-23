@@ -56,7 +56,7 @@ export class Channels {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.835",
+                "X-Fern-SDK-Version": "0.0.853",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,

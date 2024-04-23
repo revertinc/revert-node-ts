@@ -7,4 +7,6 @@ export * as fieldMapping from "./fieldMapping";
 export * from "./fieldMapping/types";
 export * as metadata from "./metadata";
 export * from "./metadata/types";
+export * as sync from "./sync";
+export * from "./sync/types";
 export * as ticket from "./ticket";

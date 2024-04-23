@@ -9,6 +9,7 @@ import { Connection } from "./api/resources/connection/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
 import { FieldMapping } from "./api/resources/fieldMapping/client/Client";
 import { Metadata } from "./api/resources/metadata/client/Client";
+import { Sync } from "./api/resources/sync/client/Client";
 import { Ticket } from "./api/resources/ticket/client/Client";
 
 export declare namespace RevertClient {
@@ -53,6 +54,12 @@ export class RevertClient {
 
     public get metadata(): Metadata {
         return (this._metadata ??= new Metadata(this._options));
+    }
+
+    protected _sync: Sync | undefined;
+
+    public get sync(): Sync {
+        return (this._sync ??= new Sync(this._options));
     }
 
     protected _ticket: Ticket | undefined;
