@@ -11,6 +11,8 @@ export const SearchContactsResponse: core.serialization.ObjectSchema<
     Revert.crm.SearchContactsResponse
 > = core.serialization.object({
     status: core.serialization.lazy(async () => (await import("../../../../..")).common.ResponseStatus),
+    next: core.serialization.string().optional(),
+    previous: core.serialization.string().optional(),
     results: core.serialization.list(
         core.serialization.lazyObject(async () => (await import("../../../../..")).common.Contact)
     ),
@@ -19,6 +21,8 @@ export const SearchContactsResponse: core.serialization.ObjectSchema<
 export declare namespace SearchContactsResponse {
     interface Raw {
         status: serializers.common.ResponseStatus.Raw;
+        next?: string | null;
+        previous?: string | null;
         results: serializers.common.Contact.Raw[];
     }
 }

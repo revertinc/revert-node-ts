@@ -8,7 +8,10 @@ import * as core from "../../../../../../../core";
 
 export const SearchNotesRequest: core.serialization.Schema<
     serializers.crm.SearchNotesRequest.Raw,
-    Omit<Revert.crm.SearchNotesRequest, "fields" | "xRevertApiToken" | "xRevertTId" | "xApiVersion">
+    Omit<
+        Revert.crm.SearchNotesRequest,
+        "fields" | "pageSize" | "cursor" | "xRevertApiToken" | "xRevertTId" | "xApiVersion"
+    >
 > = core.serialization.object({
     searchCriteria: core.serialization.unknown(),
 });

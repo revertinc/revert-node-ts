@@ -49,7 +49,7 @@ export class Company {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.853",
+                "X-Fern-SDK-Version": "0.0.860",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -153,7 +153,7 @@ export class Company {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.853",
+                "X-Fern-SDK-Version": "0.0.860",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -244,7 +244,7 @@ export class Company {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.853",
+                "X-Fern-SDK-Version": "0.0.860",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -338,7 +338,7 @@ export class Company {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.853",
+                "X-Fern-SDK-Version": "0.0.860",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -419,10 +419,18 @@ export class Company {
         request: Revert.crm.SearchCompaniesRequest,
         requestOptions?: Company.RequestOptions
     ): Promise<Revert.crm.SearchCompaniesResponse> {
-        const { fields, xRevertApiToken, xRevertTId, xApiVersion, ..._body } = request;
+        const { fields, pageSize, cursor, xRevertApiToken, xRevertTId, xApiVersion, ..._body } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
             _queryParams["fields"] = fields;
+        }
+
+        if (pageSize != null) {
+            _queryParams["pageSize"] = pageSize;
+        }
+
+        if (cursor != null) {
+            _queryParams["cursor"] = cursor;
         }
 
         const _response = await core.fetcher({
@@ -434,7 +442,7 @@ export class Company {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.853",
+                "X-Fern-SDK-Version": "0.0.860",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,

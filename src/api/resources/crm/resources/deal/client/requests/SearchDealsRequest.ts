@@ -4,6 +4,8 @@
 
 export interface SearchDealsRequest {
     fields?: string;
+    pageSize?: string;
+    cursor?: string;
     /**
      * Your official API key for accessing revert apis.
      */

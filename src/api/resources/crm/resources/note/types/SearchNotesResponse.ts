@@ -6,5 +6,7 @@ import * as Revert from "../../../../..";
 
 export interface SearchNotesResponse {
     status: Revert.common.ResponseStatus;
+    next?: string;
+    previous?: string;
     results: Revert.common.Note[];
 }
