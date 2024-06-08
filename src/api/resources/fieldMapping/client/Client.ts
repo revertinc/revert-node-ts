@@ -42,7 +42,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.971",
+                "X-Fern-SDK-Version": "0.0.1066",
                 "x-revert-public-token": xRevertPublicToken,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken,
@@ -123,7 +123,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.971",
+                "X-Fern-SDK-Version": "0.0.1066",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
             },
@@ -212,7 +212,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.971",
+                "X-Fern-SDK-Version": "0.0.1066",
                 "x-revert-public-token": xRevertPublicToken,
                 "x-revert-t-id": xRevertTId,
                 "x-revert-t-token": xRevertTToken,
@@ -305,7 +305,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.971",
+                "X-Fern-SDK-Version": "0.0.1066",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
             },
@@ -394,7 +394,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.971",
+                "X-Fern-SDK-Version": "0.0.1066",
                 "x-revert-api-token": xRevertApiToken,
             },
             contentType: "application/json",
@@ -485,7 +485,7 @@ export class FieldMapping {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.971",
+                "X-Fern-SDK-Version": "0.0.1066",
                 "x-revert-api-token": xRevertApiToken,
             },
             contentType: "application/json",
