@@ -6,6 +6,7 @@ export interface GetLeadsRequest {
     fields?: string;
     pageSize?: string;
     cursor?: string;
+    associations?: string;
     /**
      * Your official API key for accessing revert apis.
      */

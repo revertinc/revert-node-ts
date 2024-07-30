@@ -4,6 +4,7 @@
 
 export interface GetCompaniesRequest {
     fields?: string;
+    associations?: string;
     pageSize?: string;
     cursor?: string;
     /**

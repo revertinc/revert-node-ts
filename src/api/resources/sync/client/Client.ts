@@ -44,7 +44,7 @@ export class Sync {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1066",
+                "X-Fern-SDK-Version": "0.0.1067",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-connection-api-key": xConnectionApiKey != null ? xConnectionApiKey : undefined,

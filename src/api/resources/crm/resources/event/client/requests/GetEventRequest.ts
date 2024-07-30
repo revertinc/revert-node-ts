@@ -4,6 +4,7 @@
 
 export interface GetEventRequest {
     fields?: string;
+    associations?: string;
     /**
      * Your official API key for accessing revert apis.
      */

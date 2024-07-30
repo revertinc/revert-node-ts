@@ -34,10 +34,14 @@ export class Event {
         request: Revert.crm.GetEventRequest,
         requestOptions?: Event.RequestOptions
     ): Promise<Revert.crm.GetEventResponse> {
-        const { fields, xRevertApiToken, xRevertTId, xApiVersion } = request;
+        const { fields, associations, xRevertApiToken, xRevertTId, xApiVersion } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
             _queryParams["fields"] = fields;
+        }
+
+        if (associations != null) {
+            _queryParams["associations"] = associations;
         }
 
         const _response = await core.fetcher({
@@ -49,7 +53,7 @@ export class Event {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1066",
+                "X-Fern-SDK-Version": "0.0.1067",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -130,7 +134,7 @@ export class Event {
         request: Revert.crm.GetEventsRequest,
         requestOptions?: Event.RequestOptions
     ): Promise<Revert.crm.GetEventsResponse> {
-        const { fields, pageSize, cursor, xRevertApiToken, xRevertTId, xApiVersion } = request;
+        const { fields, pageSize, cursor, associations, xRevertApiToken, xRevertTId, xApiVersion } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (fields != null) {
             _queryParams["fields"] = fields;
@@ -144,6 +148,10 @@ export class Event {
             _queryParams["cursor"] = cursor;
         }
 
+        if (associations != null) {
+            _queryParams["associations"] = associations;
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.RevertEnvironment.Production,
@@ -153,7 +161,7 @@ export class Event {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1066",
+                "X-Fern-SDK-Version": "0.0.1067",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -244,7 +252,7 @@ export class Event {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1066",
+                "X-Fern-SDK-Version": "0.0.1067",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -338,7 +346,7 @@ export class Event {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1066",
+                "X-Fern-SDK-Version": "0.0.1067",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -444,7 +452,7 @@ export class Event {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1066",
+                "X-Fern-SDK-Version": "0.0.1067",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
@@ -537,7 +545,7 @@ export class Event {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1066",
+                "X-Fern-SDK-Version": "0.0.1067",
                 "x-revert-api-token": xRevertApiToken,
                 "x-revert-t-id": xRevertTId,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
