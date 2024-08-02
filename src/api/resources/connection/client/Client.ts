@@ -43,7 +43,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1067",
+                "X-Fern-SDK-Version": "0.0.1068",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -133,7 +133,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1067",
+                "X-Fern-SDK-Version": "0.0.1068",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -223,7 +223,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1067",
+                "X-Fern-SDK-Version": "0.0.1068",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
             },
@@ -312,7 +312,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1067",
+                "X-Fern-SDK-Version": "0.0.1068",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -405,7 +405,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1067",
+                "X-Fern-SDK-Version": "0.0.1068",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -495,7 +495,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1067",
+                "X-Fern-SDK-Version": "0.0.1068",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,
@@ -587,7 +587,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1067",
+                "X-Fern-SDK-Version": "0.0.1068",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
             },
@@ -668,7 +668,7 @@ export class Connection {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@revertdotdev/node",
-                "X-Fern-SDK-Version": "0.0.1067",
+                "X-Fern-SDK-Version": "0.0.1068",
                 "x-revert-api-token": xRevertApiToken,
                 "x-api-version": xApiVersion != null ? xApiVersion : undefined,
                 "x-revert-t-id": xRevertTId,

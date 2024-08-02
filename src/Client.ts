@@ -4,6 +4,7 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
+import { Ats } from "./api/resources/ats/client/Client";
 import { Chat } from "./api/resources/chat/client/Client";
 import { Connection } from "./api/resources/connection/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
@@ -25,6 +26,12 @@ export declare namespace RevertClient {
 
 export class RevertClient {
     constructor(protected readonly _options: RevertClient.Options = {}) {}
+
+    protected _ats: Ats | undefined;
+
+    public get ats(): Ats {
+        return (this._ats ??= new Ats(this._options));
+    }
 
     protected _chat: Chat | undefined;
 
